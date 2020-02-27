@@ -9,6 +9,8 @@ import { MatButtonModule} from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+
 
 
 @NgModule({
@@ -24,7 +26,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatMenuModule,
     MatToolbarModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    RouterModule
 
   ],
   providers: [],
