@@ -10,6 +10,8 @@ export class CareerFairsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+    console.log('This is done')
   }
 
 }
