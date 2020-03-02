@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import {MatGridListModule} from '@angular/material';
 
 
 
@@ -27,8 +28,8 @@ import { RouterModule } from '@angular/router';
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    RouterModule
-
+    RouterModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
