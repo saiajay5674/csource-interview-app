@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
-import { CareerFairsComponent } from './career-fairs/career-fairs.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatCardModule } from '@angular/material/card';
@@ -10,14 +9,22 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
-import {MatGridListModule} from '@angular/material';
+import { HomeComponent } from './home/home.component';
+import { CareerfairComponent } from './careerfair/careerfair.component';
+import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
+import { CompanyComponent } from './company/company.component';
+import { CheckinComponent } from './checkin/checkin.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CareerFairsComponent
+    HomeComponent,
+    CareerfairComponent,
+    ManageCompaniesComponent,
+    CompanyComponent,
+    CheckinComponent
   ],
   imports: [
     BrowserModule,
@@ -28,8 +35,7 @@ import {MatGridListModule} from '@angular/material';
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    RouterModule,
-    MatGridListModule
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
