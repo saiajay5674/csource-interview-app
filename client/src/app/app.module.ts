@@ -10,13 +10,21 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { CareerfairComponent } from './careerfair/careerfair.component';
+import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
+import { CompanyComponent } from './company/company.component';
+import { CheckinComponent } from './checkin/checkin.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    CareerfairComponent,
+    ManageCompaniesComponent,
+    CompanyComponent,
+    CheckinComponent
   ],
   imports: [
     BrowserModule,
