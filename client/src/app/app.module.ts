@@ -36,7 +36,6 @@ import { CheckinComponent } from './checkin/checkin.component';
     MatIconModule,
     MatCardModule,
     RouterModule
-
   ],
   providers: [],
   bootstrap: [AppComponent]

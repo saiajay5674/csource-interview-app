@@ -79,3 +79,7 @@ form {
   border: none;
   border-radius: 3px;
 }
+
+mat-grid-tile {
+  background: lightgray;
+}
