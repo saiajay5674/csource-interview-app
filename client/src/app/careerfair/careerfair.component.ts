@@ -1,29 +1,29 @@
-import { RepositoryService } from './../../shared/repository.service';
+import { RepositoryService } from '';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { Owner } from 'careerfair.model';
+import { CareerFair } from 'careerfair.model';
 
 @Component({
-  selector: 'app-owner-list',
-  templateUrl: './owner-list.component.html',
-  styleUrls: ['./owner-list.component.css']
+  selector: 'app-careerfair',
+  templateUrl: 'careerfair.component.html',
+  styleUrls: ['careerfair.component.css']
 })
-export class OwnerListComponent implements OnInit {
+export class CareerfairComponent implements OnInit {
 
-  public displayedColumns = ['name', 'dateOfBirth', 'address', 'details', 'update', 'delete'
+  public displayedColumns = ['semester', 'companies', 'interviewees', 'interviews', 'details', 'update', 'delete'
 ];
-  public dataSource = new MatTableDataSource<Owner>();
+  public dataSource = new MatTableDataSource<CareerFair>();
 
   constructor(private repoService: RepositoryService) { }
 
   ngOnInit() {
-    this.getAllOwners();
+    this.getAllCareerFairs();
   }
 
-  public getAllOwners = () => {
+  public getAllCareerFairs = () => {
     this.repoService.getData('api/owner')
     .subscribe(res => {
-      this.dataSource.data = res as Owner[];
+      this.dataSource.data = res as CareerFair[];
     })
   }
 
