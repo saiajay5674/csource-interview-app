@@ -1,0 +1,13 @@
+p {
+  font-family: Lato, serif;
+}
+
+.company-card {
+  max-width: 400px;
+  margin: 4px
+}
+
+.company-logo {
+  background-image: url('https://expresswriters.com/wp-content/uploads/2015/09/google-new-logo-1030x541.jpg');
+  background-size: cover;
+}
