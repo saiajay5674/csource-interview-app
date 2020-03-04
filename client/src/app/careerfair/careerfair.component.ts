@@ -1,45 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { stringify } from 'querystring';
 import { MatTableDataSource } from '@angular/material';
-
-
-
-
 
 @Component({
   selector: 'app-careerfair',
   templateUrl: './careerfair.component.html',
   styleUrls: ['./careerfair.component.css']
 })
-
 export class CareerfairComponent implements OnInit {
 
   public displayedColumns = ['semester', 'companies', 'interviewees', 'interviews', 'details', 'update', 'delete'
 ];
-  public dataSource = new MatTableDataSource<CareerfairComponent>();
+  public data = [{semester: "Spring 2020", companies: 30, interviewees: 70, interviews: 100}, {semester: "Fall 2019", companies: 25, interviewees: 65, interviews: 95}];
+  public dataSource = new MatTableDataSource(this.data);
 
   constructor() { }
 
   ngOnInit() {
-    this.getAllCareerFairs();
-  }
-
-  public getAllCareerFairs = () => {
-    // this.repoService.getData('api/owner')
-    // .subscribe(res => {
-    //   this.dataSource.data = res as CareerfairComponent[];
-    // })
-  }
-
-  public redirectToDetails = (id: string) => {
-
-  }
-
-  public redirectToUpdate = (id: string) => {
-
-  }
-
-  public redirectToDelete = (id: string) => {
-
   }
 
 }
