@@ -1,43 +1,75 @@
+<!-- <head>
 
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <style>
-    body {font-family: Arial, Helvetica, sans-serif;}
-    * {box-sizing: border-box;}
-    </style>
-    </head>
-    <body>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+  body {font-family: Arial, Helvetica, sans-serif;}
+  * {box-sizing: border-box;}
+  </style>
+  </head>
+  <body>
 
 
-    <button class="open-button" onclick="openForm()">Check In Now!</button>
-    
-    <div class="form-popup" id="myForm">
-      <form action="/action_page.php" class="form-container">
-        <h2>Please input your hokie ID and select the company and time</h2>
+  <button class="open-button" onclick="openForm()">Check In Now!</button>
+  
+  <div class="form-popup" id="myForm">
+    <form action="/action_page.php" class="form-container">
+      <h2>Please input your hokie ID</h2>
 
-        <label for="hokieID"><b>Hokie ID</b></label>
-        <input type="text" placeholder="Enter Hokie ID" name="hokieID" required>
-    
-        <label for="company"><b>Company</b></label>
-        <input type="text" placeholder="Enter company name" name="company" required>
-    
-        <label for="time"><b>Time</b></label>
-        <input type="text" placeholder="Enter time" name="time" required>
-    
-        <button type="submit" class="btn">Submit</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-      </form>
-    </div>
-    
-    <script>
-    function openForm() {
-      document.getElementById("myForm").style.display = "block";
-    }
-    
-    function closeForm() {
-      document.getElementById("myForm").style.display = "none";
-    }
-    </script>
-    
-    </body>
+      <label for="hokieID"><b>Hokie ID</b></label>
+      <input type="text" placeholder="Enter Hokie ID" name="hokieID" required>
+  
+      <label for="company"><b>Company</b></label>
+      <input type="text" placeholder="Enter company name" name="company" required>
+  
+      <label for="time"><b>Time</b></label>
+      <input type="text" placeholder="Enter time" name="time" required>
+  
+      <button type="submit" class="btn">Submit</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+  
+  </body> -->
+
+  <label for="name">Please enter your Hokie ID:</label>
+
+  <input type="text" id="name" name="name" required
+       minlength="4" maxlength="8" size="10">
+
+  <button class="open-button" mat-raised-buton (click)="openDialog()">Check In Now!</button>
+
+  <h2 mat-dialog-title>Choose your company and career fair</h2>
+
+  <mat-dialog-content>
+    <h4>Select your company</h4>
+  <mat-form-field>
+    <mat-label>Company</mat-label>
+    <select matNativeControl required>
+      <option value="ms">Microsoft</option>
+      <option value="goog">Google</option>
+      <option value="appl">Apple</option>
+      <option value="ama">Amazon</option>
+    </select>
+  </mat-form-field>
+  
+  <h4>Select your time</h4>
+  <mat-form-field>
+    <mat-label>Career Fairs</mat-label>
+    <select matNativeControl required>
+      <option value="spring 2020">spring 2020</option>
+      <option value="fall 2020">fall 2020</option>
+      <option value="spring 2021">spring 2021</option>
+      <option value="fall 2021">fall 2021</option>
+    </select>
+  </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button>Cancel</button>
+    <button mat-raised-button >Save</button>
+  </mat-dialog-actions>
+
+
+  
+  
   
