@@ -15,6 +15,8 @@ import { ManageCompaniesComponent } from './manage-companies/manage-companies.co
 import { CompanyComponent } from './company/company.component';
 import { CheckinComponent } from './checkin/checkin.component';
 import { MatDialogModule, MatSelectModule } from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 
 
@@ -38,7 +40,8 @@ import { MatDialogModule, MatSelectModule } from '@angular/material';
     MatCardModule,
     RouterModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]
