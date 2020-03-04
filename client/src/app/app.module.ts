@@ -14,6 +14,7 @@ import { CareerfairComponent } from './careerfair/careerfair.component';
 import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
 import { CompanyComponent } from './company/company.component';
 import { CheckinComponent } from './checkin/checkin.component';
+import { MatDialogModule, MatSelectModule } from '@angular/material';
 
 
 
@@ -35,7 +36,9 @@ import { CheckinComponent } from './checkin/checkin.component';
     MatToolbarModule,
     MatIconModule,
     MatCardModule,
-    RouterModule
+    RouterModule,
+    MatDialogModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

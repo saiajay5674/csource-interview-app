@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from "@angular/material";
 
 @Component({
   selector: 'app-checkin',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckinComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) {
+
+     }
 
   ngOnInit() {
+  }
+
+  
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CheckinComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }
