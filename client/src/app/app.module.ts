@@ -17,6 +17,9 @@ import { CheckinComponent } from './checkin/checkin.component';
 import { MatTableModule } from '@angular/material';
 import { MatDialogModule, MatSelectModule } from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -43,7 +46,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatTableModule,
     MatDialogModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
