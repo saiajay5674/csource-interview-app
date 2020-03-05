@@ -1,0 +1,28 @@
+<mat-dialog-content>
+    <h4>Select your company</h4>
+  <mat-form-field>
+    <mat-label>Company</mat-label>
+    <select matNativeControl required>
+      <option value="ms">Microsoft</option>
+      <option value="goog">Google</option>
+      <option value="appl">Apple</option>
+      <option value="ama">Amazon</option>
+    </select>
+  </mat-form-field>
+  
+  <h4>Select your time</h4>
+  <mat-form-field>
+    <mat-label>Career Fairs</mat-label>
+    <select matNativeControl required>
+      <option value="spring 2020">spring 2020</option>
+      <option value="fall 2020">fall 2020</option>
+      <option value="spring 2021">spring 2021</option>
+      <option value="fall 2021">fall 2021</option>
+    </select>
+  </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-raised-button (click)="save()" >Save</button>
+  </mat-dialog-actions>
