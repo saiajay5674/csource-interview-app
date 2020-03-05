@@ -16,6 +16,11 @@ import { CompanyComponent } from './company/company.component';
 import { CheckinComponent } from './checkin/checkin.component';
 import { MatTableModule, MatSortModule } from '@angular/material';
 import { MatDialogModule, MatSelectModule } from '@angular/material';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
+
 
 
 @NgModule({
@@ -40,7 +45,10 @@ import { MatDialogModule, MatSelectModule } from '@angular/material';
     MatTableModule,
     MatSortModule,
     MatDialogModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
   ],
   exports: [
     MatSortModule
