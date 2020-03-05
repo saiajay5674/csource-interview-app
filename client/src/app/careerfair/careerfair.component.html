@@ -9,8 +9,8 @@
     <td mat-cell *matCellDef="let element"> {{element.year}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="companies"mat-sort-header>
-    <th mat-header-cell *matHeaderCellDef> Companies </th>
+  <ng-container matColumnDef="companies">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Companies </th>
     <td mat-cell *matCellDef="let element"> {{element.companies}} </td>
   </ng-container>
 
