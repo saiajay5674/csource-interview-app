@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const Company = require('./company');
+
 
 const careerfairSchema = mongoose.Schema({
 
@@ -11,9 +13,17 @@ const careerfairSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    comapanies: {
+    comapanies: [{
+        type: String,
+        default: []
+    }],
+    students: [{
 
-    }
+    }],
+    interviews: [{
+        type: String,
+        defualt: []
+    }]
 
 });
 
