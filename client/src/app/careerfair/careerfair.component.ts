@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChildren } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { stringify } from 'querystring';
 import { MatTableDataSource, MatSort } from '@angular/material';
 
@@ -7,7 +7,7 @@ import { MatTableDataSource, MatSort } from '@angular/material';
   templateUrl: './careerfair.component.html',
   styleUrls: ['./careerfair.component.css']
 })
-export class CareerfairComponent implements OnInit, AfterViewInit {
+export class CareerfairComponent implements OnInit {
 
   public displayedColumns = ['semester', 'year', 'companies', 'interviewees', 'interviews', 'details', 'update', 'delete'
 ];
@@ -17,15 +17,9 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
   {semester: "Fall", year:2018, companies: 35, interviewees: 75, interviews: 110}];
   public dataSource = new MatTableDataSource(this.data);
 
-  @ViewChildren(MatSort) sort: MatSort;
-
   constructor() { }
 
   ngOnInit() {
-  }
-
-  ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
   }
 
 }
