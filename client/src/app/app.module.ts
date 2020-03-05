@@ -14,9 +14,8 @@ import { CareerfairComponent } from './careerfair/careerfair.component';
 import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
 import { CompanyComponent } from './company/company.component';
 import { CheckinComponent } from './checkin/checkin.component';
-import { MatTableModule } from '@angular/material';
+import { MatTableModule, MatSortModule } from '@angular/material';
 import { MatDialogModule, MatSelectModule } from '@angular/material';
-
 
 
 @NgModule({
@@ -39,8 +38,12 @@ import { MatDialogModule, MatSelectModule } from '@angular/material';
     MatCardModule,
     RouterModule,
     MatTableModule,
+    MatSortModule,
     MatDialogModule,
     MatSelectModule
+  ],
+  exports: [
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]
