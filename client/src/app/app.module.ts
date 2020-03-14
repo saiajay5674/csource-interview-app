@@ -19,6 +19,7 @@ import { MatDialogModule, MatSelectModule } from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
+import { CheckinDialogComponent } from './checkin-dialog/checkin-dialog.component';
 
 
 
@@ -30,7 +31,8 @@ import { FormsModule } from '@angular/forms';
     CareerfairComponent,
     ManageCompaniesComponent,
     CompanyComponent,
-    CheckinComponent
+    CheckinComponent,
+    CheckinDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,9 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,
     MatInputModule,
     FormsModule
+  ],
+  entryComponents: [
+    CheckinDialogComponent
   ],
   exports: [
     MatSortModule

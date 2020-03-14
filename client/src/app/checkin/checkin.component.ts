@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from "@angular/material";
+import { CheckinDialogComponent } from '../checkin-dialog/checkin-dialog.component';
 
 @Component({
   selector: 'app-checkin',
@@ -18,11 +19,12 @@ export class CheckinComponent implements OnInit {
   
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(CheckinComponent, {
+    const dialogRef = this.dialog.open(CheckinDialogComponent, {
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      console.log(result);
     });
   }
 
