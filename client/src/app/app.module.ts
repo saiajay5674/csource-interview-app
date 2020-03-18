@@ -16,11 +16,15 @@ import { CompanyComponent } from './company/company.component';
 import { CheckinComponent } from './checkin/checkin.component';
 import { MatTableModule, MatSortModule } from '@angular/material';
 import { MatDialogModule, MatSelectModule } from '@angular/material';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { CheckinDialogComponent } from './checkin-dialog/checkin-dialog.component';
+<<<<<<< HEAD
 import { CheckedStudentsComponent } from './checked-students/checked-students.component';
+=======
+import { FlexLayoutModule } from '@angular/flex-layout';
+>>>>>>> dc2a503db53a8e00d8cb816d7ee882770174fe20
 
 
 
@@ -52,13 +56,16 @@ import { CheckedStudentsComponent } from './checked-students/checked-students.co
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    FlexLayoutModule
   ],
   entryComponents: [
     CheckinDialogComponent
   ],
   exports: [
-    MatSortModule
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
