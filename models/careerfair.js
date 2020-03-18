@@ -18,7 +18,8 @@ const careerfairSchema = mongoose.Schema({
         default: []
     }],
     students: [{
-
+        type: String,
+        default: []
     }],
     interviews: [{
         type: String,
