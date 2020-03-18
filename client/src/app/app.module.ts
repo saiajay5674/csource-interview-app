@@ -20,6 +20,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { CheckinDialogComponent } from './checkin-dialog/checkin-dialog.component';
+import { CheckedStudentsComponent } from './checked-students/checked-students.component';
 
 
 
@@ -32,7 +33,8 @@ import { CheckinDialogComponent } from './checkin-dialog/checkin-dialog.componen
     ManageCompaniesComponent,
     CompanyComponent,
     CheckinComponent,
-    CheckinDialogComponent
+    CheckinDialogComponent,
+    CheckedStudentsComponent,
   ],
   imports: [
     BrowserModule,

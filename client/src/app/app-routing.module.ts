@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { CareerfairComponent } from './careerfair/careerfair.component'
 import { CompanyComponent } from './company/company.component'
 import { CheckinComponent } from './checkin/checkin.component'
+import { CheckedStudentsComponent } from './checked-students/checked-students.component';
 
 const routes = [
   {
@@ -23,7 +24,13 @@ const routes = [
   {
     path: 'checkin',
     component: CheckinComponent
+  },
+  {
+    path: 'checked',
+    component: CheckedStudentsComponent
   }
+  
+  
 ]
 @NgModule({
   declarations: [],
