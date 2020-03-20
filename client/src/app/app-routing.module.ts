@@ -7,6 +7,7 @@ import { CareerfairComponent } from './careerfair/careerfair.component'
 import { CompanyComponent } from './company/company.component'
 import { CheckinComponent } from './checkin/checkin.component'
 import { CheckedStudentsComponent } from './checked-students/checked-students.component';
+import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
 
 const routes = [
   {
@@ -19,7 +20,7 @@ const routes = [
   },
   {
     path: 'company',
-    component: CompanyComponent
+    component: ManageCompaniesComponent
   },
   {
     path: 'checkin',
@@ -29,8 +30,8 @@ const routes = [
     path: 'checked',
     component: CheckedStudentsComponent
   }
-  
-  
+
+
 ]
 @NgModule({
   declarations: [],

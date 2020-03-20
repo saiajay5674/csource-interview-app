@@ -5,6 +5,9 @@ const companySchema = mongoose.Schema({
     name: {
         type: String,
         required: true
+    },
+    domain: {
+        type: String
     }
 });
 

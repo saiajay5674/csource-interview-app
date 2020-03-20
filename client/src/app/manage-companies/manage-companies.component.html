@@ -1,1 +1,12 @@
-<p>manage-companies works!</p>
+<div class="company-container">
+
+  <company-component *ngFor="let company of companies" [company]="company"></company-component>
+
+</div>
+
+
+<div class="fab-container">
+  <button mat-flat-button color="primary" style="background-color: #8B1F41;" matTooltip="Add new class" (click)="createCompany()">
+    <i class="material-icons">add</i>
+  </button>
+</div>

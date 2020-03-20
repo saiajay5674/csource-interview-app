@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Add new Company</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+    <mat-form-field>
+        <input matInput placeholder="Company Name" formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Domain Name" formControlName="domain">
+    </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="btn btn-outline-success mr-2"(click)="save()">Save</button>
+  <button class="btn btn-outline-danger"(click)="close()">Close</button>
+</mat-dialog-actions>

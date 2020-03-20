@@ -32,6 +32,8 @@ app.use(bodyparser.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/careerfair', require('./routes/careerfair.router'));
+app.use('/api/company', require('./routes/company.router'));
+
 
 app.listen(PORT, () => {
     console.log('Listening at PORT: ' + PORT);

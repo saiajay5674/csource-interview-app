@@ -1,0 +1,16 @@
+.fab-container {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.company-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fill,minmax(305px, 1fr));
+
+}
+
