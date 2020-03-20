@@ -1,3 +1,15 @@
+<div class="container">
+<div class="row">
+<div class="search-hero">
+  <input class="form-control" type="text" name="search" [(ngModel)]="searchText" placeholder="&#61442;  Search here">
+</div>
+</div>
+</div>
+
+
+
+
+
 <div class="company-container">
 
   <company-component *ngFor="let company of companies" [company]="company"></company-component>

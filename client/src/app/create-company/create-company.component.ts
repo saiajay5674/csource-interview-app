@@ -13,15 +13,13 @@ export class CreateCompanyComponent implements OnInit {
 
   form: FormGroup
   constructor(private fb: FormBuilder,
-    private dialog: MatDialogRef<CreateCompanyComponent>,
-    @Inject(MAT_DIALOG_DATA) public data)
+    private dialog: MatDialogRef<CreateCompanyComponent>)
     {
       this.form = this.fb.group({
         name: ["", Validators.required],
         domain: [""]
       });
 
-      console.log(this.data);
      }
 
   ngOnInit() {
