@@ -15,7 +15,7 @@
   .example-card{
     margin: 0 auto;
     width: 40%;
-    height: 30%;
+    height: 40%;
     top: 200px;
     padding: 16px 20px;
 }
@@ -27,7 +27,10 @@
   width: 50%;
 }
 
+.back {
+  background-color: #8B1F41;
+}
 
 
 
-  
+
