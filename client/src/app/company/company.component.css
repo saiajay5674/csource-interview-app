@@ -18,3 +18,8 @@ p {
   align-self: start;
 }
 
+.spacer {
+  flex: 1 1 auto;
+}
+
+

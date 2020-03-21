@@ -23,6 +23,9 @@ import { CheckinDialogComponent } from './checkin-dialog/checkin-dialog.componen
 import { CheckedStudentsComponent } from './checked-students/checked-students.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateCompanyComponent } from './create-company/create-company.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { MatSnackBarModule } from '@angular/material';
+
 
 
 
@@ -59,7 +62,9 @@ import { CreateCompanyComponent } from './create-company/create-company.componen
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    Ng2SearchPipeModule,
+    MatSnackBarModule
   ],
   entryComponents: [
     CheckinDialogComponent,

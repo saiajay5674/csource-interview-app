@@ -13,11 +13,13 @@ export class CreateCompanyComponent implements OnInit {
 
   form: FormGroup
   constructor(private fb: FormBuilder,
-    private dialog: MatDialogRef<CreateCompanyComponent>)
+    private dialog: MatDialogRef<CreateCompanyComponent>,
+    @Inject(MAT_DIALOG_DATA) {name, domain}
+    )
     {
       this.form = this.fb.group({
-        name: ["", Validators.required],
-        domain: [""]
+        name: [name, Validators.required],
+        domain: [domain]
       });
 
      }

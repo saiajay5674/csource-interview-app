@@ -10,7 +10,7 @@
 
 <div class="company-container">
 
-  <company-component *ngFor="let company of companies" [company]="company"></company-component>
+  <company-component *ngFor="let company of companies | filter:searchText" [company]="company"></company-component>
 
 </div>
 

@@ -31,7 +31,7 @@ router.post('/', (req, res, next) => {
             res.json({msg: 'Failed to add company ' + error});
         }
         else {
-            res.json({msg: 'New company has been added'});
+            res.json({msg: 'New company has been added', company});
         }
     });
 });

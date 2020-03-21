@@ -3,6 +3,7 @@ import { Company } from '../_models/Company'
 import { CompanyService } from '../_services/company.service';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { CreateCompanyComponent } from '../create-company/create-company.component'
+import { NotificationService } from '../_services/notification.service';
 
 
 @Component({
@@ -13,14 +14,18 @@ import { CreateCompanyComponent } from '../create-company/create-company.compone
 export class ManageCompaniesComponent implements OnInit {
 
   companies: Company[] = [];
+  searchText;
 
-  constructor(private companyService: CompanyService, private dialog: MatDialog) { }
+
+  constructor(private companyService: CompanyService,
+    private dialog: MatDialog,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
     this.loadCompanies();
   }
 
-  private loadCompanies() {
+  loadCompanies() {
     this.companyService.getCompanies().subscribe((records) => {
       this.companies = records;
     });
@@ -35,13 +40,14 @@ export class ManageCompaniesComponent implements OnInit {
 
     dialogConfig.data = {
       name: '', domain: ''
-  };
+    };
 
     const dialogRef = this.dialog.open(CreateCompanyComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe( (result) => {
-      this.companyService.addCompany(result).subscribe( (records) => {
-        this.companies = this.companies;
+      this.companyService.addCompany(result).subscribe( (record) => {
+        this.notificationService.showNotif('Created ' + record.company.name, 'create');
+        this.loadCompanies();
       })
     })
   }

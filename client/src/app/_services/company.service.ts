@@ -14,7 +14,7 @@ export class CompanyService {
     return this.http.get<Company[]>('http://localhost:3000/api/company/');
   }
 
-  addCompany(val): Observable<Company[]> {
+  addCompany(val): Observable<any> {
     let company = {
       name: val.name,
       domain: val.domain
@@ -22,7 +22,12 @@ export class CompanyService {
 
     console.log(company);
 
-    return this.http.post<Company[]>('http://localhost:3000/api/company', company);
+    return this.http.post<any>('http://localhost:3000/api/company', company);
+  }
+
+  deleteCompany(company: Company): Observable<any> {
+
+    return this.http.delete<any>(`http://localhost:3000/api/company/${company._id}`);
   }
 
 }
