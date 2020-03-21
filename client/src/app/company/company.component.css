@@ -4,9 +4,17 @@ p {
 
 .company-card {
   max-width: 400px;
-  margin: 4px
+  margin: 10px
 }
 
 .company-logo {
   background-size: cover;
 }
+
+.menu{
+
+  grid-area: menu;
+  justify-self: end;
+  align-self: start;
+}
+
