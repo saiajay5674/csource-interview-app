@@ -14,7 +14,7 @@ import { CareerfairComponent } from './careerfair/careerfair.component';
 import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
 import { CompanyComponent } from './company/company.component';
 import { CheckinComponent } from './checkin/checkin.component';
-import { MatTableModule, MatSortModule } from '@angular/material';
+import { MatTableModule, MatSortModule, MatCheckboxModule } from '@angular/material';
 import { MatDialogModule, MatSelectModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -64,7 +64,8 @@ import { MatSnackBarModule } from '@angular/material';
     ReactiveFormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatCheckboxModule
   ],
   entryComponents: [
     CheckinDialogComponent,
