@@ -8,6 +8,7 @@ import { CompanyComponent } from './company/company.component'
 import { CheckinComponent } from './checkin/checkin.component'
 import { CheckedStudentsComponent } from './checked-students/checked-students.component';
 import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
+import { LoginComponent } from './login/login.component';
 
 const routes = [
   {
@@ -19,7 +20,7 @@ const routes = [
     component: CareerfairComponent
   },
   {
-    path: 'company',
+    path: 'manage-companies',
     component: ManageCompaniesComponent
   },
   {
@@ -29,6 +30,10 @@ const routes = [
   {
     path: 'checked',
     component: CheckedStudentsComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   }
 
 

@@ -25,6 +25,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateCompanyComponent } from './create-company/create-company.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatSnackBarModule } from '@angular/material';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -42,7 +43,8 @@ import { MatSnackBarModule } from '@angular/material';
     CheckinComponent,
     CheckinDialogComponent,
     CheckedStudentsComponent,
-    CreateCompanyComponent
+    CreateCompanyComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
