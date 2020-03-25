@@ -73,7 +73,8 @@ import { CreateCareerfairComponent } from './create-careerfair/create-careerfair
   ],
   entryComponents: [
     CheckinDialogComponent,
-    CreateCompanyComponent
+    CreateCompanyComponent,
+    CreateCareerfairComponent
   ],
   exports: [
     MatSortModule,

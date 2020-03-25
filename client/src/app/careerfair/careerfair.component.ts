@@ -62,11 +62,11 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
 
     const dialogRef = this.dialog.open(CreateCareerfairComponent, dialogConfig);
 
-    // dialogRef.afterClosed().subscribe( (result) => {
-    //   this.careerfairService.addCareerfair(result).subscribe( (record) => {
-    //     this.notificationService.showNotif('Created ' + record.careerfair.term + record.careerfair.year, 'create');
-    //   })
-    // })
+    dialogRef.afterClosed().subscribe( (result) => {
+      this.careerfairService.addCareerfair(result).subscribe( (record) => {
+        this.notificationService.showNotif('Created ' + record.careerfair.term + record.careerfair.year, 'create');
+      })
+    })
   }
 
 }
