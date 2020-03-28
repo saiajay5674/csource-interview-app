@@ -1,6 +1,11 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { stringify } from 'querystring';
 import { MatTableDataSource, MatSort } from '@angular/material';
+import { Careerfair } from '../_models/Careerfair'
+import { CareerfairService } from '../_services/careerfair.service';
+import { MatDialog, MatDialogConfig } from "@angular/material";
+import { CreateCareerfairComponent } from '../create-careerfair/create-careerfair.component'
+import { NotificationService } from '../_services/notification.service';
 
 class Fairs {
   semester: string;
@@ -17,13 +22,15 @@ class Fairs {
 })
 export class CareerfairComponent implements OnInit, AfterViewInit {
 
-  public displayedColumns = ['semester', 'year', 'companies', 'interviewees', 'interviews', 'details', 'update', 'delete'
+  public displayedColumns = ['semester', 'year', 'companies', 'interviewees', 'interviews', 'details'
 ];
   dataSource: MatTableDataSource<Fairs>;
 
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
-  constructor() { }
+  constructor(private careerfairService: CareerfairService,
+    private dialog: MatDialog,
+    private notificationService: NotificationService) { }
 
   ngOnInit() {
     const fairs: Fairs[] = [{semester: "Spring", year: 2020, companies: 30, interviewees: 70, interviews: 100},
@@ -40,6 +47,26 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  createCareerfair() {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = true;
+
+    dialogConfig.data = {
+      term: '', year: ''
+    };
+
+    const dialogRef = this.dialog.open(CreateCareerfairComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe( (result) => {
+      this.careerfairService.addCareerfair(result).subscribe( (record) => {
+        this.notificationService.showNotif('Created ' + record.careerfair.term + record.careerfair.year, 'create');
+      })
+    })
   }
 
 }

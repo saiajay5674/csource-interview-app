@@ -26,6 +26,7 @@ import { CreateCompanyComponent } from './create-company/create-company.componen
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatSnackBarModule } from '@angular/material';
 import { LoginComponent } from './login/login.component';
+import { CreateCareerfairComponent } from './create-careerfair/create-careerfair.component';
 
 
 
@@ -44,7 +45,8 @@ import { LoginComponent } from './login/login.component';
     CheckinDialogComponent,
     CheckedStudentsComponent,
     CreateCompanyComponent,
-    LoginComponent
+    LoginComponent,
+    CreateCareerfairComponent
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,8 @@ import { LoginComponent } from './login/login.component';
   ],
   entryComponents: [
     CheckinDialogComponent,
-    CreateCompanyComponent
+    CreateCompanyComponent,
+    CreateCareerfairComponent
   ],
   exports: [
     MatSortModule,
