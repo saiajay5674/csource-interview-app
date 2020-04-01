@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Add Career Fair</h2>
+
+<mat-dialog-content [formGroup]="form">
+
+    <mat-form-field>
+        <input matInput placeholder="Term" formControlName="term">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Year" formControlName="year">
+    </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button class="btn btn-outline-success mr-2"(click)="save()">Save</button>
+  <button class="btn btn-outline-danger"(click)="close()">Close</button>
+</mat-dialog-actions>

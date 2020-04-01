@@ -10,13 +10,25 @@ th.mat-header-cell {
   max-width: 300px;
   font-weight: bold;
   font-size: 25px;
+  color: #8B1F41;
 }
 
 td.mat-cell {
   font-size: 20px;
+  font-weight: bold;
 }
 
 .mat-form-field {
   font-size: 20px;
   width: 100%;
+}
+
+.fab-container {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
 }

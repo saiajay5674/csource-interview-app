@@ -1,11 +1,22 @@
 table {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    min-width: 500px;
-  }
-  
-  th.mat-header-cell {
-    text-align: left;
-    max-width: 300px;
-  }
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  min-width: 100px;
+}
+
+th.mat-header-cell {
+  text-align: left;
+  max-width: 800px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+td.mat-cell {
+  font-size: 20px;
+}
+
+.mat-form-field {
+  font-size: 20px;
+  width: 100%;
+}

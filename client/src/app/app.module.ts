@@ -25,9 +25,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateCompanyComponent } from './create-company/create-company.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatSnackBarModule } from '@angular/material';
-import { ManageCareerFairComponent } from './manage-career-fair/manage-career-fair.component';
-import { ManageCompanyCardComponent } from './manage-company-card/manage-company-card.component';
-import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -45,9 +42,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CheckinComponent,
     CheckinDialogComponent,
     CheckedStudentsComponent,
-    CreateCompanyComponent,
-    ManageCareerFairComponent,
-    ManageCompanyCardComponent
+    CreateCompanyComponent
   ],
   imports: [
     BrowserModule,
@@ -69,8 +64,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     ReactiveFormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
-    MatSnackBarModule,
-    MatTooltipModule
+    MatSnackBarModule
   ],
   entryComponents: [
     CheckinDialogComponent,
