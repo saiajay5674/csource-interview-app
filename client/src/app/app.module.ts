@@ -14,7 +14,7 @@ import { CareerfairComponent } from './careerfair/careerfair.component';
 import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
 import { CompanyComponent } from './company/company.component';
 import { CheckinComponent } from './checkin/checkin.component';
-import { MatTableModule, MatSortModule, MatCheckboxModule } from '@angular/material';
+import { MatTableModule, MatSortModule } from '@angular/material';
 import { MatDialogModule, MatSelectModule } from '@angular/material';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -25,8 +25,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateCompanyComponent } from './create-company/create-company.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatSnackBarModule } from '@angular/material';
-import { LoginComponent } from './login/login.component';
-import { CreateCareerfairComponent } from './create-careerfair/create-careerfair.component';
 
 
 
@@ -44,9 +42,7 @@ import { CreateCareerfairComponent } from './create-careerfair/create-careerfair
     CheckinComponent,
     CheckinDialogComponent,
     CheckedStudentsComponent,
-    CreateCompanyComponent,
-    LoginComponent,
-    CreateCareerfairComponent
+    CreateCompanyComponent
   ],
   imports: [
     BrowserModule,
@@ -68,13 +64,11 @@ import { CreateCareerfairComponent } from './create-careerfair/create-careerfair
     ReactiveFormsModule,
     HttpClientModule,
     Ng2SearchPipeModule,
-    MatSnackBarModule,
-    MatCheckboxModule
+    MatSnackBarModule
   ],
   entryComponents: [
     CheckinDialogComponent,
-    CreateCompanyComponent,
-    CreateCareerfairComponent
+    CreateCompanyComponent
   ],
   exports: [
     MatSortModule,

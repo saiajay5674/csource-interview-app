@@ -30,10 +30,6 @@ const routes = [
   {
     path: 'checked',
     component: CheckedStudentsComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
   }
 
 

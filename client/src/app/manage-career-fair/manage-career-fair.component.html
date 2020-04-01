@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="search-hero">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" placeholder="&#61442;  Search here">
+  </div>
+</div>
+
+
+
+
+
+<div class="company-container">
+
+  <app-manage-company-card *ngFor="let manageCompanyCard of company_list | filter:searchText" [company]="manageCompanyCard"></app-manage-company-card>
+
+</div>
