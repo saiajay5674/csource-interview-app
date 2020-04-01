@@ -3,16 +3,21 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { CareerfairComponent } from './careerfair/careerfair.component'
-import { CompanyComponent } from './company/company.component'
-import { CheckinComponent } from './checkin/checkin.component'
+import { CareerfairComponent } from './careerfair/careerfair.component';
+import { CompanyComponent } from './company/company.component';
+import { CheckinComponent } from './checkin/checkin.component';
 import { CheckedStudentsComponent } from './checked-students/checked-students.component';
 import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
+import {ManageCareerFairComponent} from './manage-career-fair/manage-career-fair.component';
 
 const routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'manageCareerfair',
+    component: ManageCareerFairComponent
   },
   {
     path: 'careerfair',
