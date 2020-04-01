@@ -6,6 +6,7 @@ import { CareerfairService } from '../_services/careerfair.service';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { CreateCareerfairComponent } from '../create-careerfair/create-careerfair.component'
 import { NotificationService } from '../_services/notification.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-careerfair',
@@ -24,7 +25,7 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
 
   constructor(private careerfairService: CareerfairService,
     private dialog: MatDialog,
-    private notificationService: NotificationService) { }
+    private notificationService: NotificationService, private router: Router) { }
 
   ngOnInit() {
     this.getCareerfairs()
@@ -68,6 +69,10 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
         //this.notificationService.showNotif('Created ' + record.careerfair.term + record.careerfair.year, 'create');
       })
     })
+  }
+
+  navigateManageCareerFair() {
+    this.router.navigate(['/manageCareerfair']);
   }
 
 }
