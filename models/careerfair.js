@@ -13,7 +13,7 @@ const careerfairSchema = mongoose.Schema({
         type: Number,
         required: true
     },
-    comapanies: [{
+    companies: [{
         type: String,
         default: []
     }],

@@ -5,6 +5,8 @@ const jwt = require('jsonwebtoken');
 
 const SALT_ROUNDS = 12;
 
+const secret = "thisisthesecretforjwt" //switch to environment variable
+
 const User = require('../models/user');
 
 //Create new user
@@ -25,6 +27,7 @@ router.post('/create', (req, res, next) => {
                 
                 let newUser = new User({
                     username: req.body.username,
+                    role: req.body.role,
                     password: hash
                 });
                 
@@ -53,17 +56,22 @@ router.post('/login', (req, res, next) => {
             return res.status(401).json({message: 'Auth Failed'});
         }
 
-        bcrypt.compare(req.body.password, user[0].password, (error, result) => {
+        bcrypt.compare(req.body.password, users[0].password, (error, result) => {
 
             if (result) {
 
-                jwt.sign({username: user[0].username}, process.env.JWT_SECRET, (error, token) => {
+                jwt.sign({username: users[0].username, role: users[0].role}, secret, (error, token) => {
 
-                    return res.status(200).json({user: user[0].username, token: token});
+                    if (error) {
+                        return res.status(500).json({msg: 'JWT token failed ' + error});
+                    }
+
+                    return res.status(200).json({user: users[0].username, role: users[0].role,  token: token});
                 });
             }
-
-            return res.status(401).json({message: 'Auth Failed'});
+            else {
+                return res.status(401).json({message: 'Auth Failed'});
+            }
         });
     });
 });

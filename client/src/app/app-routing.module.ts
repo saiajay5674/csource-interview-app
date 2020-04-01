@@ -9,19 +9,19 @@ import { CheckinComponent } from './checkin/checkin.component'
 import { CheckedStudentsComponent } from './checked-students/checked-students.component';
 import { ManageCompaniesComponent } from './manage-companies/manage-companies.component';
 import { LoginComponent } from './login/login.component';
+import { AuthGuard } from './_services/auth-guard.service';
+
 
 const routes = [
   {
     path: '',
-    component: HomeComponent
-  },
-  {
-    path: 'careerfair',
-    component: CareerfairComponent
+    component: HomeComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'manage-companies',
-    component: ManageCompaniesComponent
+    component: ManageCompaniesComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'checkin',

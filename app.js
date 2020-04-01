@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const bcrypt = require('bcrypt');
 
 const app = express();
 
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/careerfair', require('./routes/careerfair.router'));
 app.use('/api/company', require('./routes/company.router'));
+app.use('/api/users', require('./routes/user.router'));
 
 
 app.listen(PORT, () => {

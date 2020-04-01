@@ -7,14 +7,6 @@ import { MatDialog, MatDialogConfig } from "@angular/material";
 import { CreateCareerfairComponent } from '../create-careerfair/create-careerfair.component'
 import { NotificationService } from '../_services/notification.service';
 
-class Fairs {
-  semester: string;
-  year: number;
-  companies: number;
-  interviewees: number;
-  interviews: number;
-}
-
 @Component({
   selector: 'app-careerfair',
   templateUrl: './careerfair.component.html',
@@ -22,9 +14,11 @@ class Fairs {
 })
 export class CareerfairComponent implements OnInit, AfterViewInit {
 
-  public displayedColumns = ['semester', 'year', 'companies', 'interviewees', 'interviews', 'details'
-];
-  dataSource: MatTableDataSource<Fairs>;
+  searchText: string;
+
+  public displayedColumns = ['semester', 'year', 'companies', 'interviewees', 'interviews', 'details'];
+  careerfairs: Careerfair[];
+  dataSource: MatTableDataSource<Careerfair>;
 
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
@@ -33,11 +27,17 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
     private notificationService: NotificationService) { }
 
   ngOnInit() {
-    const fairs: Fairs[] = [{semester: "Spring", year: 2020, companies: 30, interviewees: 70, interviews: 100},
-    {semester: "Fall", year: 2019, companies: 25, interviewees: 65, interviews: 95},
-    {semester: "Spring", year: 2019, companies: 28, interviewees: 60, interviews: 90},
-    {semester: "Fall", year:2018, companies: 35, interviewees: 75, interviews: 110}];
-    this.dataSource = new MatTableDataSource(fairs);
+    this.getCareerfairs()
+    this.dataSource = new MatTableDataSource(this.careerfairs);
+  }
+
+  getCareerfairs() {
+    this.careerfairService.getCareerfairs().subscribe( (records) => {
+
+      console.log(records);
+      this.careerfairs = records;
+      this.dataSource = new MatTableDataSource(this.careerfairs);
+    });
   }
 
   ngAfterViewInit() {
@@ -64,7 +64,8 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe( (result) => {
       this.careerfairService.addCareerfair(result).subscribe( (record) => {
-        this.notificationService.showNotif('Created ' + record.careerfair.term + record.careerfair.year, 'create');
+        this.getCareerfairs()
+        //this.notificationService.showNotif('Created ' + record.careerfair.term + record.careerfair.year, 'create');
       })
     })
   }
