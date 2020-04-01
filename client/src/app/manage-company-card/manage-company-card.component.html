@@ -1,21 +1,14 @@
-<mat-card class="company-card row" matTooltip = "list interviewees">
+<mat-card class="company-card row" matTooltip="list interviewees">
 
   <mat-card-header>
-    <img mat-card-avatar class="company-logo" src="{{'https://logo.clearbit.com/' + company.domain}}"  (click)="list_interviewees()" >
-    <mat-card-title  (click)="list_interviewees()" >{{company.name}}</mat-card-title>
+    <img mat-card-avatar class="company-logo" src="{{'https://logo.clearbit.com/' + company.domain}}"
+      (click)="list_interviewees()">
+    <mat-card-title (click)="list_interviewees()">{{company.name}}</mat-card-title>
 
     <span class="spacer"></span>
 
-    <div class="menu">
-      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Delete or edit" >
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>block</mat-icon>
-          <span>Deactivate</span>
-        </button>
-      </mat-menu>
+    <div class="menu" [formGroup]="form" (change)="onChange($event.checked)">
+      <mat-slide-toggle formControlName="enable"></mat-slide-toggle>
     </div>
 
   </mat-card-header>
