@@ -31,6 +31,7 @@ import { ManageCompanyCardComponent } from './manage-company-card/manage-company
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import { CreateCareerfairComponent } from './create-careerfair/create-careerfair.component';
 
 
 
@@ -51,7 +52,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     CreateCompanyComponent,
     LoginComponent,
     ManageCareerFairComponent,
-    ManageCompanyCardComponent
+    ManageCompanyCardComponent,
+    CreateCareerfairComponent
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,8 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
   ],
   entryComponents: [
     CheckinDialogComponent,
-    CreateCompanyComponent
+    CreateCompanyComponent,
+    CreateCareerfairComponent
   ],
   exports: [
     MatSortModule,
