@@ -25,8 +25,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateCompanyComponent } from './create-company/create-company.component';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { MatSnackBarModule } from '@angular/material';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoginComponent }  from './login/login.component'
+import { ManageCareerFairComponent } from './manage-career-fair/manage-career-fair.component';
+import { ManageCompanyCardComponent } from './manage-company-card/manage-company-card.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 
 
 
@@ -44,7 +49,9 @@ import { LoginComponent }  from './login/login.component'
     CheckinDialogComponent,
     CheckedStudentsComponent,
     CreateCompanyComponent,
-    LoginComponent
+    LoginComponent,
+    ManageCareerFairComponent,
+    ManageCompanyCardComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +74,10 @@ import { LoginComponent }  from './login/login.component'
     HttpClientModule,
     Ng2SearchPipeModule,
     MatSnackBarModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTooltipModule,
+    MatCheckboxModule,
+    MatSlideToggleModule
   ],
   entryComponents: [
     CheckinDialogComponent,
