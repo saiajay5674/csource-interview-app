@@ -8,7 +8,12 @@ const companySchema = mongoose.Schema({
         unique: true
     },
     domain: {
-        type: String
+        type: String,
+        required: true
+    },
+    companyUser: {
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'User'    
     }
 });
 
