@@ -3,6 +3,8 @@ table {
   overflow-x: auto;
   overflow-y: hidden;
   min-width: 500px;
+  border: 1px solid #ddd;
+
 }
 
 th.mat-header-cell {
@@ -43,6 +45,7 @@ td.mat-cell {
   padding-top: 10px;
   padding-bottom: 10px;
   color: #405065;
+
 }
 
 .form-control::placeholder  {
