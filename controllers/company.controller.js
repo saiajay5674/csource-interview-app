@@ -48,13 +48,31 @@ function addCompany(req, res, next) {
 
 function deleteCompany(req, res, next) {
 
-    Company.remove({_id: req.params.id}, (error, result) => {
+    var removeUser = false;
+    var removeCompany = false;
+    
+    Company.findOne({_id: req.params.id}, (error, company) => {
+
         if (error) {
-            res.json(error);
+            return res.status(500).json(error);
         }
-        else {
-            res.json(result);
-        }
+
+        console.log(company)
+
+        User.deleteOne({_id: company.companyUser}, (error, result) => {
+
+            if (error) {
+                return res.status(500).json(error);
+            }
+
+            Company.deleteOne({_id: req.params.id}, (error, result) => {
+                if (error) {
+                    return res.status(500).json(error);
+                }
+
+                return res.status(200).json({msg: 'Company Data has been deleted', result});
+            });
+        });
     });
 }
 

@@ -30,9 +30,9 @@ export class LoginComponent implements OnInit {
     // }
 
     this.authService.login(this.username, this.password)
-      .pipe(first())
-      .subscribe(
+      .pipe(first()).subscribe(
         data => {
+          console.log(data);
           this.router.navigate(['']);
 
           this.notif.showNotif('Logged in as: ' + this.username, 'CONFIRMATION');

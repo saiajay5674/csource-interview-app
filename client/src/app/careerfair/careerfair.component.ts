@@ -34,8 +34,6 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
 
   getCareerfairs() {
     this.careerfairService.getCareerfairs().subscribe( (records) => {
-
-      console.log(records);
       this.careerfairs = records;
       this.dataSource = new MatTableDataSource(this.careerfairs);
     });

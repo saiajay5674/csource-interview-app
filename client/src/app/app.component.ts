@@ -12,9 +12,12 @@ export class AppComponent {
   title = 'client';
   currentUser: User;
 
-  constructor(private router: Router,
-    private authService: AuthService) {
+  constructor(private router: Router, private authService: AuthService) {
+    this.authService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
+  get isAdmin() {
+    return this.currentUser && this.currentUser.role.toLowerCase() === 'admin';
   }
 
   logout() {
