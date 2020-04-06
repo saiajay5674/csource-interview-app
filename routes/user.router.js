@@ -9,44 +9,6 @@ const secret = "thisisthesecretforjwt" //switch to environment variable
 
 const User = require('../models/user');
 
-//Create new user
-router.post('/create', (req, res, next) => {
-
-    User.find({username: req.body.username}).exec()
-    .then( users => {
-        if (users.length > 0) {
-            res.status(409).json({ msg: 'User Exists'})
-        }
-        else {
-
-            bcrypt.hash(req.body.password, SALT_ROUNDS, (error, hash) => {
-                
-                if (error) {
-                    return res.status(500).json({error})
-                }
-                
-                let newUser = new User({
-                    username: req.body.username,
-                    role: req.body.role,
-                    password: hash
-                });
-                
-                newUser.save((error, user) => {
-        
-                    if (error) {
-                        res.status(500).json({msg: 'Failed to add user ' + error});
-                    }
-                    else {
-                        res.status(201).json({msg: 'New user has been added', user});
-                    }
-                });
-        
-            }); 
-        }
-    });
-   
-});
-
 router.post('/login', (req, res, next) => {
     
     User.find({username: req.body.username}).exec()

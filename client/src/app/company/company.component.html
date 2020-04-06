@@ -23,6 +23,11 @@
     </div>
 
   </mat-card-header>
+  <div class="code-block row">
 
+    <pre class="col-9">Username: {{this.company.companyUser.username}}<br>Password: {{this.company.companyUser.password}}</pre>
+    <button mat-menu-item class="copy-button" matTooltip="Copy" (click)="copyToClip()"><mat-icon style="font-size: medium; width: fit-content;">assignment</mat-icon></button>
+
+  </div>
 
 </mat-card>

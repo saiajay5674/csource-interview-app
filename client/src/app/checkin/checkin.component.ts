@@ -20,6 +20,7 @@ export class CheckinComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(CheckinDialogComponent, {
+      width: '30%', height: '50%'
     });
 
     dialogRef.afterClosed().subscribe(result => {
