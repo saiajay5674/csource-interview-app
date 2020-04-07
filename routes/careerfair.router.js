@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 
 const Careerfair = require('../models/careerfair');
+
 
 //Get ALL career fairs
 router.get('/', (req, res, next) => {
@@ -44,6 +46,46 @@ router.delete('/:id', (req, res, next) => {
             res.json(result);
         }
     });
+});
+
+//Update number of companies at a careerfair
+router.patch('/:id', (req, res, next) => {
+
+    if (req.body.enable) { //enable represents company card slide toggle position
+        Careerfair.update(
+            { _id: req.params.id },
+            { $addToSet: { companies: req.body.companyId  } }
+        )
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    }
+    else {
+        Careerfair.update(
+            { _id: req.params.id },
+            { $pull: { companies: req.body.companyId  } }
+        )
+        .exec()
+        .then(result => {
+            console.log(result);
+            res.status(200).json(result);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json({
+                error: err
+            });
+        });
+    }
+    
 });
 
 module.exports = router;
