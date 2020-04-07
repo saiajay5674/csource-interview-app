@@ -33,24 +33,25 @@ function login(req, res, next) {
             }
 
         }
+        else {
+            bcrypt.compare(req.body.password, users[0].password, (error, result) => {
 
-        bcrypt.compare(req.body.password, users[0].password, (error, result) => {
-
-            if (result) {
-
-                jwt.sign({username: users[0].username, role: users[0].role}, secret, (error, token) => {
-
-                    if (error) {
-                        return res.status(500).json({msg: 'JWT token failed ' + error});
-                    }
-
-                    return res.status(200).json({user: users[0].username, role: users[0].role,  token: token});
-                });
-            }
-            else {
-                return res.status(401).json({message: 'Auth Failed'});
-            }
-        });
+                if (result) {
+    
+                    jwt.sign({username: users[0].username, role: users[0].role}, secret, (error, token) => {
+    
+                        if (error) {
+                            return res.status(500).json({msg: 'JWT token failed ' + error});
+                        }
+    
+                        return res.status(200).json({user: users[0].username, role: users[0].role,  token: token});
+                    });
+                }
+                else {
+                    return res.status(401).json({message: 'Auth Failed'});
+                }
+            });
+        }
     });
 }
 
