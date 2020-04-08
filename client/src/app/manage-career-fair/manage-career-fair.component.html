@@ -4,12 +4,23 @@
   </div>
 </div>
 
+<div class="container">
+  <section>
+    <h1>Fall 2020</h1>
+  </section>
+</div>
 
+<div class="company-container">
+  <app-manage-company-card (deactivateEvent)="activate($event)"
+    *ngFor="let manageCompanyCard of inactive_company_list | filter:searchText" [company]="manageCompanyCard">
+  </app-manage-company-card>
+</div>
 
+<hr calss="line">
 
 
 <div class="company-container">
-
-  <app-manage-company-card *ngFor="let manageCompanyCard of company_list | filter:searchText" [company]="manageCompanyCard"></app-manage-company-card>
-
+  <app-manage-company-card (activateEvent)="deactivate($event)"
+    *ngFor="let manageCompanyCard of active_company_list | filter:searchText" [company]="manageCompanyCard">
+  </app-manage-company-card>
 </div>
