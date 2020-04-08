@@ -1,5 +1,4 @@
 .company-container {
-
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(305px, 1fr));
 }
@@ -19,7 +18,6 @@
 
 .form-control::placeholder {
   font-family: FontAwesome;
-
 }
 
 .line {
@@ -28,9 +26,9 @@
   top: 50%;
 }
 
-.lable{
-  margin-bottom: 100px;
+.lable {
+  color: #405065;
+  margin-bottom: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
-  color: #405065;
 }

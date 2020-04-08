@@ -1,4 +1,4 @@
-<mat-card class="company-card row" matTooltip="list interviewees">
+<mat-card class="company-card row">
 
   <mat-card-header>
     <img mat-card-avatar class="company-logo" src="{{'https://logo.clearbit.com/' + company.domain}}"
@@ -7,11 +7,8 @@
 
     <span class="spacer"></span>
 
-    <div class="menu" [formGroup]="form" (change)="onChange($event.checked)">
-      <mat-slide-toggle formControlName="enable"></mat-slide-toggle>
-    </div>
+    <mat-slide-toggle  [(ngModel)]="enable"  (change)="onChange($event)"></mat-slide-toggle>
 
   </mat-card-header>
-
 
 </mat-card>

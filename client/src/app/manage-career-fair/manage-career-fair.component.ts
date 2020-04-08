@@ -11,25 +11,50 @@ import { User } from "../_models/User";
 export class ManageCareerFairComponent implements OnInit {
   // temp_user: User ={username}
 
-  active_company_list: Company[] = [];
+  active_company_list: Company[] = [
+    {
+      _id: "false",
+      name: "facebook",
+      domain: "facebook.com",
+      companyUser: new User(),
+    },
+  ];
 
   inactive_company_list: Company[] = [
     {
-      _id: "",
+      _id: "true",
       name: "google",
       domain: "google.com",
       companyUser: new User(),
     },
     {
-      _id: "",
+      _id: "true",
       name: "apple",
       domain: "apple.com",
       companyUser: new User(),
     },
     {
-      _id: "",
+      _id: "true",
       name: "ibm",
       domain: "ibm.com",
+      companyUser: new User(),
+    },
+    {
+      _id: "true",
+      name: "tesla",
+      domain: "tesla.com",
+      companyUser: new User(),
+    },
+    {
+      _id: "true",
+      name: "spacex",
+      domain: "spacex.com",
+      companyUser: new User(),
+    },
+    {
+      _id: "true",
+      name: "rivian",
+      domain: "rivian.com",
       companyUser: new User(),
     },
   ];
