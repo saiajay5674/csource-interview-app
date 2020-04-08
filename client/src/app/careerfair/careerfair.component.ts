@@ -68,9 +68,4 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
       })
     })
   }
-
-  navigateManageCareerFair() {
-    this.router.navigate(['/manageCareerfair']);
-  }
-
 }

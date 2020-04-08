@@ -14,6 +14,10 @@ export class CareerfairService {
     return this.http.get<Careerfair[]>('http://localhost:3000/api/careerfair/');
   }
 
+  getCareerfair(id) : Observable<Careerfair> {
+    return this.http.get<Careerfair>(`http://localhost:3000/api/careerfair/${id}`);
+  }
+
   addCareerfair(val): Observable<any> {
     let careerfair = {
       term: val.term,

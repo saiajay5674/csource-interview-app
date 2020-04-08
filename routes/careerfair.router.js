@@ -13,6 +13,20 @@ router.get('/', (req, res, next) => {
     });
 });
 
+//Get a specific careerfair
+router.get('/:id', (req, res, next) => {
+
+    Careerfair.findOne({_id: req.params.id}).populate('companies').exec((error, careerfair) => {
+        
+        if (error) {
+            return res.status(500).json(error);
+        }
+        if (careerfair) {
+            return res.status(200).json(careerfair);
+        }
+    });
+});
+
 //Create new career fair
 router.post('/', (req, res, next) => {
 
