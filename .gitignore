@@ -1,1 +1,4 @@
 /node_modules
+/edid/ed_id_ca.pem
+/edid/private.key
+/edid/public.crt
