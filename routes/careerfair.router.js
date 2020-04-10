@@ -16,6 +16,8 @@ router.post('/', careerfairController.addCareerfair);
 router.delete('/:id', careerfairController.deleteCareerfair);
 
 //Update number of companies at a careerfair
-router.patch('/:id', careerfairController.updateCompanyList);
+router.patch('/company/:id', careerfairController.updateCompanyList);
+
+router.patch('/interview/:id', careerfairController.addInterview);
 
 module.exports = router;

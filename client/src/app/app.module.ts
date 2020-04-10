@@ -32,6 +32,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CreateCareerfairComponent } from './create-careerfair/create-careerfair.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 
@@ -79,7 +80,8 @@ import { CreateCareerfairComponent } from './create-careerfair/create-careerfair
     MatCheckboxModule,
     MatTooltipModule,
     MatCheckboxModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatAutocompleteModule
   ],
   entryComponents: [
     CheckinDialogComponent,

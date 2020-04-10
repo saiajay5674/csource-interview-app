@@ -35,6 +35,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/careerfair', require('./routes/careerfair.router'));
 app.use('/api/company', require('./routes/company.router'));
 app.use('/api/users', require('./routes/user.router'));
+app.use('/api/students', require('./routes/student.router'));
 
 
 app.listen(PORT, () => {

@@ -1,4 +1,8 @@
 const Careerfair = require('../models/careerfair');
+const Student = require('../models/student');
+const Interview = require('../models/interview');
+const edid = require('../edid/edid');
+const crypto = require('crypto');
 
 function getCareerfairs(req, res, next) {
 
@@ -9,7 +13,15 @@ function getCareerfairs(req, res, next) {
 
 function getCareerfair(req, res, next) {
 
-    Careerfair.findOne({_id: req.params.id}).populate('companies').exec((error, careerfair) => {
+    Careerfair.findOne({_id: req.params.id})
+    .populate(
+        {
+            path: 'interviews', 
+            model: 'Interview', 
+            populate: [{path: 'company', model: 'Company'}, {path: 'student', model: 'Student'}]
+            
+        })
+    .exec((error, careerfair) => {
         
         if (error) {
             return res.status(500).json(error);
@@ -91,10 +103,120 @@ function updateCompanyList(req, res, next) {
     }
 }
 
+
+function addInterview(req, res, next) {
+
+    const passportHash = crypto.createHash('md5').update(req.body.student, 'utf8').digest('hex');
+
+    Student.find({passport: passportHash}, (error, students) => {
+
+        if (error) {
+            return res.status(500).json(error);
+        }
+
+        if (students.length == 0) {
+            saveStudent(req.body.student)
+            .then( student => {
+                let newInterview = new Interview({
+                    company: req.body.company,
+                    student: student._id,
+                    time: req.body.time
+                });
+
+                saveInterview(newInterview, req.params.id)
+                .then( result => {
+                    return res.status(200).json(result);
+                })
+                .catch( error => {
+                    return res.status(500).json(error);
+                })
+            })
+            .catch( error => {
+                return res.status(500).json(error)
+            });
+        }
+        else {
+
+            let newInterview = new Interview({
+                company: req.body.company,
+                student: students[0]._id,
+                time: req.body.time
+            });
+
+            saveInterview(newInterview, req.params.id)
+            .then( result => {
+                return res.status(200).json(result)
+            })
+            .catch( error => {
+                return res.status(500).json(error);
+            });
+        }
+    });
+}
+
+async function saveStudent(pid) {
+
+    return new Promise((resolve, reject) => {
+
+        edid.getStudentData(pid)
+        .then(studentData => {
+
+            let newStudent = new Student({
+                passport: crypto.createHash('md5').update(pid, 'utf8').digest('hex'),
+                name: studentData.name,
+                major: studentData.major,
+                class: studentData.class
+            });
+
+            newStudent.save((error, student) => {
+
+                if (error) {
+                    reject(error);
+                }
+    
+                if (student) {
+                    resolve(student);
+                }
+            });
+
+        })
+        .catch( error => {
+            reject(error);
+        });        
+    });
+}
+
+async function saveInterview(newInterview, careerfairId) {
+
+    return new Promise( (resolve, reject) => {
+
+        newInterview.save((error, interview) => {
+
+            if (error) {
+                reject(error);
+            }
+
+            Careerfair.updateOne({_id: careerfairId}, { $addToSet: {interviews: interview._id} }, (error, result) => {
+
+                if (error) {
+                    reject(error);
+                }
+
+                console.log(result);
+
+                if (result) {
+                    resolve(result);
+                }
+            })
+        });
+    });
+}
+
 module.exports = {
     getCareerfairs,
     getCareerfair,
     addCareerfair,
     deleteCareerfair,
-    updateCompanyList
+    updateCompanyList,
+    addInterview
 }

@@ -3,19 +3,13 @@ const mongoose = require('mongoose');
 const interviewSchema = mongoose.Schema({
 
     company: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company',
         required: true
     },
     student: {
-        type: String,
-        required: true
-    },
-    term: {
-        type: String,
-        required: true
-    },
-    year: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Student',
         required: true
     },
     time: {
