@@ -12,6 +12,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthGuard } from './_services/auth-guard.service';
 
 import {ManageCareerFairComponent} from './manage-career-fair/manage-career-fair.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 const routes = [
   {
@@ -43,6 +44,10 @@ const routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'statistics',
+    component: StatisticsComponent
   }
 ]
 

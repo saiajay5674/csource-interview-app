@@ -17,7 +17,7 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
 
   searchText: string;
 
-  public displayedColumns = ['term', 'year', 'companies', 'students', 'interviews', 'details'];
+  public displayedColumns = ['term', 'year', 'companies', 'students', 'interviews', 'details', 'statistics'];
   careerfairs: Careerfair[];
   dataSource: MatTableDataSource<Careerfair>;
 

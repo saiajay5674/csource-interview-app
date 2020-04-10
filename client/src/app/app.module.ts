@@ -32,10 +32,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CreateCareerfairComponent } from './create-careerfair/create-careerfair.component';
-
-
-
-
+import { StatisticsComponent } from './statistics/statistics.component';
 
 
 
@@ -53,7 +50,8 @@ import { CreateCareerfairComponent } from './create-careerfair/create-careerfair
     LoginComponent,
     ManageCareerFairComponent,
     ManageCompanyCardComponent,
-    CreateCareerfairComponent
+    CreateCareerfairComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
