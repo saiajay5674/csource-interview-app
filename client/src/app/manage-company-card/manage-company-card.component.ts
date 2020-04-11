@@ -24,7 +24,7 @@ export class ManageCompanyCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log("\n{{{{{ company id", this.company._id, "----");
+    //console.log("\n{{{{{ company id", this.company._id, "----");
     if (this.company._id == "true") {
       this.enable = true;
     } else if (this.company._id == "false") {
@@ -35,37 +35,17 @@ export class ManageCompanyCardComponent implements OnInit {
     console.log("\n\n}}}} Button clicked\n\n");
     this.router.navigate(["/checked"]);
   }
-
+  @Output() activateEvent = new EventEmitter<Company>();
+  @Output() deactivateEvent = new EventEmitter<Company>();
   onChange($event: MatSlideToggleChange) {
     if ($event.checked) {
-      this.activate();
+      this.activateEvent.emit(this.company);
+      console.log("\n\n *** switch on \n");
+
       this.enable = true;
     } else if (!$event.checked) {
-      this.deactivate();
+      this.deactivateEvent.emit(this.company);
       this.enable = false;
     }
-
-    console.log($event);
-  }
-
-  @Output() activateEvent = new EventEmitter<Company>();
-  activate() {
-    console.log("\n\n ########ccard is activated--\n");
-    this.activateEvent.emit({
-      _id: "true",
-      name: this.company.name,
-      domain: this.company.domain,
-      companyUser: this.company.companyUser,
-    });
-  }
-
-  @Output() deactivateEvent = new EventEmitter<Company>();
-  deactivate() {
-    this.deactivateEvent.emit({
-      _id: "false",
-      name: this.company.name,
-      domain: this.company.domain,
-      companyUser: this.company.companyUser,
-    });
   }
 }

@@ -29,5 +29,4 @@ export class CompanyService {
 
     return this.http.delete<any>(`http://localhost:3000/api/company/${company._id}`);
   }
-
 }

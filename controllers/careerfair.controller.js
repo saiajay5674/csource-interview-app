@@ -67,18 +67,20 @@ function deleteCareerfair(req, res, next) {
 
 function updateCompanyList(req, res, next) {
 
+    console.log("\n\n ---- updateCompanyList node ", req.body, " \n--")
+
     if (req.body.enable) { //enable represents company card slide toggle position
         Careerfair.update(
-            { _id: req.params.id },
+            { _id: req.params._id },
             { $addToSet: { companies: req.body.companyId  } }
         )
         .exec()
         .then(result => {
-            console.log(result);
+            console.log("\n ++ updateCompanyList node then " ,result, " ++\n");
             res.status(200).json(result);
         })
         .catch(err => {
-            console.log(err);
+            console.log("\n -- updateCompanyList node error ", err, " --\n");
             res.status(500).json({
                 error: err
             });
@@ -86,7 +88,7 @@ function updateCompanyList(req, res, next) {
     }
     else {
         Careerfair.update(
-            { _id: req.params.id },
+            { _id: req.params._id },
             { $pull: { companies: req.body.companyId  } }
         )
         .exec()
