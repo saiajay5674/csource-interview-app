@@ -1,28 +1,59 @@
-
-
 <table mat-table [dataSource]="dataSource" matSort>
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
 
 
-    <ng-container matColumnDef="time">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Time </th>
-        <td mat-cell *matCellDef="let element"> {{element.time}} </td>
-    </ng-container>
+  <ng-container matColumnDef="time">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header (click)="dataSourceSort('time')"> Time </th>
+    <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+  </ng-container>
 
-      <ng-container matColumnDef="checked">
-        <th mat-header-cell *matHeaderCellDef> Status </th>
-        <td mat-cell *matCellDef="let element">
-            <mat-checkbox>Interviewed</mat-checkbox><br />
-            <mat-checkbox>Cancelled</mat-checkbox>
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+  </ng-container>
 
-        </td>
-      </ng-container>
+  <ng-container matColumnDef="checked">
+    <th mat-header-cell *matHeaderCellDef> Interviewed </th>
+    <td mat-cell *matCellDef="let element;let i = index">
+      <mat-checkbox (click)="checkboxLabel(element,i)">
 
+      </mat-checkbox>
+    </td>
+  </ng-container>
 
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
 
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
+<!-- Interviewed -->
+<h3 class="interviewedTips">Interviewed</h3>
+<table class="interviewed" mat-table [dataSource]="selectDataSource" >
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef  > Name </th>
+    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="time">
+    <th mat-header-cell *matHeaderCellDef (click)="sortData('time')" > Time </th>
+    <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef> Status </th>
+    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="checked">
+    <th mat-header-cell *matHeaderCellDef>  </th>
+    <td mat-cell *matCellDef="let element">
+      <!-- <mat-checkbox>
+      </mat-checkbox> -->
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
