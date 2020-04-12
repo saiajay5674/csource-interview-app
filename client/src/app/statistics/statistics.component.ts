@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CareerfairService } from '../_services/careerfair.service';
 import { Careerfair } from '../_models/Careerfair';
+<<<<<<< HEAD
 import { Chart } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
 import { MatGridListModule } from '@angular/material/grid-list';
+=======
+>>>>>>> 4c69d483b90f44ead8dc98cf0856f860e7209d45
 
 @Component({
   selector: 'app-statistics',

@@ -34,4 +34,8 @@ export class CareerfairService {
     return this.http.delete<any>(`http://localhost:3000/api/careerfair/${careerfair._id}`);
   }
 
+  updateCompanyList(id){
+    console.log("\n\n===> updateComapnyList called angular ", id, "==\n")
+    return this.http.patch<any>(`http://localhost:3000/api/careerfair/company/${id}`, id);
+  }
 }

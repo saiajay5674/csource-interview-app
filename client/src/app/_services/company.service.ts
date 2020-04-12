@@ -30,4 +30,8 @@ export class CompanyService {
     return this.http.delete<any>(`http://localhost:3000/api/company/${company._id}`);
   }
 
+  //get Company by ID
+  getCompany(id){
+    return this.http.get(`http://localhost:3000/api/company/${id}`);
+  }
 }

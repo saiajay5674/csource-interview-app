@@ -38,10 +38,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 4c69d483b90f44ead8dc98cf0856f860e7209d45
 @NgModule({
   declarations: [
     AppComponent,
