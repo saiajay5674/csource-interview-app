@@ -16,7 +16,7 @@ export class ManageCareerFairComponent implements OnInit {
   id: string;
 
   inactive_company_list: Company[] = [];
-  active_company_list: Company[];
+  active_company_list: Company[] = [];
   searchText;
 
   constructor(
@@ -28,19 +28,9 @@ export class ManageCareerFairComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadInactiveCompanies();
     this.getCareerfair(this.id);
-    //this.loadCompanies();
+    this.loadInactiveCompanies();
   }
-
-  // active_company_list: Company[] = [
-  //   {
-  //     _id: "false",
-  //     name: "facebook",
-  //     domain: "facebook.com",
-  //     companyUser: new User(),
-  //   },
-  // ];
 
   loadInactiveCompanies() {
     this.companyService.getCompanies().subscribe((records) => {
@@ -51,8 +41,45 @@ export class ManageCareerFairComponent implements OnInit {
   getCareerfair(id) {
     this.careerfairService.getCareerfair(id).subscribe((record) => {
       this.careerfair = record;
-      //this.active_company_list = record.companies
-      console.log("\n\n ++++ ", record.companies, " +++\n");
+      console.log("\n\n ++++ ", record.companies[0], " +++\n");
+
+      this.getCompanies(record.companies);
+    });
+  }
+
+  //get all companies //TODO fetch all at once instad of one at a time????
+  getCompanies(companies) {
+    //console.log("\n\n ~~~~~~ getCompanies ", companies, " ~~~~~~\n\n");
+
+    companies.forEach((element) => {
+      //TODO fix null
+      this.companyService.getCompany(element).subscribe(
+        (record) => {
+          var company = record as Company;
+
+          this.inactive_company_list = this.inactive_company_list.filter(
+            //TODO do better way???
+            (obj) => {
+              return obj.name !== company.name;
+            }
+          );
+
+          this.active_company_list.push({
+            _id: company._id.toString(),
+            name: company.name,
+            domain: company.domain,
+            companyUser: company.companyUser,
+          });
+
+          console.log("\n\n && retrived company ", record, " &&\n");
+        },
+        (error) => {
+          console.log("\n\n && retrive company error ", error, " &&\n");
+        },
+        () => {
+          console.log("\n ended on activate \n");
+        }
+      );
     });
   }
 
@@ -69,14 +96,28 @@ export class ManageCareerFairComponent implements OnInit {
     console.log("\n ++ activate angular ", $event, " \n++");
 
     let company = {
-      _id: this.id,
-      companyId: $event._id,
+      _id: this.id.toString(),
+      companyId: $event._id.toString(),
       enable: true,
     };
 
     this.careerfairService.updateCompanyList(company).subscribe(
       (record) => {
+        this.inactive_company_list = this.inactive_company_list.filter(
+          (obj) => {
+            return obj.name !== $event.name;
+          }
+        );
+
         console.log("\n record on activate ", record, "-\n");
+
+        var company = record as Company;
+        this.active_company_list.push({
+          _id: company._id,
+          name: company.name,
+          domain: company.domain,
+          companyUser: company.companyUser,
+        });
       },
       (error) => {
         console.log("\n error on activate ", error, "-\n");
@@ -85,10 +126,6 @@ export class ManageCareerFairComponent implements OnInit {
         console.log("\n ended on activate \n");
       }
     );
-
-    // this.inactive_company_list = this.inactive_company_list.filter((obj) => {
-    //   return obj.name !== $event.name;
-    // });
 
     // this.careerfairService;
     // this.active_company_list.push($event);
