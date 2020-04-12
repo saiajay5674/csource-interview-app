@@ -32,15 +32,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { CreateCareerfairComponent } from './create-careerfair/create-careerfair.component';
-<<<<<<< HEAD
 import { StatisticsComponent } from './statistics/statistics.component';
-=======
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 
 
 
->>>>>>> 112ecf7fc6c5541d2966e26af8dccdc5916c46d7
 
 
 
@@ -86,7 +84,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatTooltipModule,
     MatCheckboxModule,
     MatSlideToggleModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatGridListModule
   ],
   entryComponents: [
     CheckinDialogComponent,
