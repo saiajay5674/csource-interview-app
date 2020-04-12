@@ -4,6 +4,7 @@ import { MatTableDataSource, MatSort } from '@angular/material';
 class Interviewees {
   name: string;
   time: string;
+  status: string;
 }
 
 @Component({
@@ -13,27 +14,78 @@ class Interviewees {
 })
 export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
-  public displayedColumns = ['name', 'time', 'checked'];
-  
-  dataSource: MatTableDataSource<Interviewees>;
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  public displayedColumns = ['name', 'time', 'status', 'checked'];
 
+  dataSource: MatTableDataSource<Interviewees>;
+  selectDataSource: MatTableDataSource<Interviewees>;
+
+  @ViewChild(MatSort, { static: false }) sortBySelect: MatSort;
+  @ViewChild(MatSort, { static: false }) sort: MatSort;
+
+  public selectDataItems: Interviewees[] = [];
+
+
+  dataSourceFieldSortMap: any = {};
+  dataSourceSelectFieldSortMap: any = {};
 
   constructor() { }
 
   ngOnInit() {
-    const interviewees: Interviewees[] = [{name: "Jack", time: "8:00"},{name: "Peter", time: "8:30"},
-    {name: "Jessica", time: "9:00"},{name: "Tony", time: "9:30"},{name: "Jason", time: "10:00"}];
+    const interviewees: Interviewees[] =
+      [{ name: "Jack", time: "08:00", status: "checked in" },
+      { name: "Jessica", time: "09:00", status: "checked in" },
+      { name: "Peter", time: "08:30", status: "checked in" },
+      { name: "Tony", time: "09:30", status: "checked in" },
+      { name: "Jason", time: "10:00", status: "checked in" }];
     this.dataSource = new MatTableDataSource(interviewees);
+
+    this.selectDataSource = new MatTableDataSource(this.selectDataItems);
+    this.selectDataSource.sort = this.sortBySelect;
   }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  checkboxLabel(data: any, index: number): void {
+
+    const dataItem: Interviewees[] = this.dataSource.data;
+    const row: Interviewees = dataItem.splice(index, 1)[0];
+
+    const cloneRow = JSON.parse(JSON.stringify(row));
+    cloneRow.status = 'interviewed';
+
+    this.selectDataItems.push(cloneRow);
+
+    this.dataSource = new MatTableDataSource(dataItem);
+    // move data
+    this.selectDataSource = new MatTableDataSource(this.selectDataItems);
+  }
+
+  sortData(field: string = 'time'): void {
+    this.dataSourceSelectFieldSortMap[field] = !this.dataSourceSelectFieldSortMap[field];
+    if (this.dataSourceSelectFieldSortMap[field]) {
+      this.selectDataItems.sort((a, b) => a[field].localeCompare(b[field]));
+    } else {
+      this.selectDataItems.sort((a, b) => b[field].localeCompare(a[field]));
+    }
+    this.selectDataSource = new MatTableDataSource(this.selectDataItems);
+  }
+
+  dataSourceSort(field: string): void {
+    this.dataSourceFieldSortMap[field] = !this.dataSourceFieldSortMap[field];
+    const dataItem: Interviewees[] = this.dataSource.data;
+    if (this.dataSourceFieldSortMap[field]) {
+      dataItem.sort((a, b) => a[field].localeCompare(b[field]));
+    } else {
+      dataItem.sort((a, b) => b[field].localeCompare(a[field]));
+    }
+    this.dataSource = new MatTableDataSource(dataItem);
   }
 
 }

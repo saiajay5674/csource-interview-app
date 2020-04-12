@@ -7,7 +7,6 @@
   max-width: 500px;
   padding-bottom: 10px;
   margin: auto;
-  margin-bottom: 50px;
 }
 
 .container {
@@ -21,9 +20,11 @@
 }
 
 .line {
-  position: absolute;
+  position: fixed;
   width: 100%;
-  top: 50%;
+  bottom: 40%;
+  background-color: #242e35;
+  height: 2px;
 }
 
 .lable {
@@ -31,4 +32,9 @@
   margin-bottom: 10px;
   padding-left: 10px;
   padding-bottom: 10px;
+}
+
+.company-list-container {
+  height: 330px;
+  overflow-x: auto;
 }
