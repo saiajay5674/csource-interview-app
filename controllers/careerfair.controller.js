@@ -72,7 +72,11 @@ function updateCompanyList(req, res, next) {
     )
       .exec()
       .then((result) => {
-        console.log("\n ++ updateCompanyList node then ", result, " ++\n");
+        console.log(
+          "\n ++ updateCompanyList node activate then ",
+          result,
+          " ++\n"
+        );
 
         if (result.nModified > 0) {
           Company.findById(req.body.companyId)
@@ -93,14 +97,31 @@ function updateCompanyList(req, res, next) {
         });
       });
   } else {
+    console.log(
+      "\n\n ###### getCompanyById node deactivate  ",
+      req.body,
+      " **\n"
+    );
     Careerfair.update(
       { _id: req.body._id },
       { $pull: { companies: req.body.companyId } }
     )
       .exec()
       .then((result) => {
-        console.log(result);
-        res.status(200).json(result);
+        console.log("\n\n $$$$$ pull log ", result, " $$$\n\n");
+
+        if (result.nModified > 0) {
+          Company.findById(req.body.companyId)
+            .then((record) => {
+              res.json(record);
+              console.log("\n\n  getCompanyById node  remove", record, " **\n");
+            })
+            .catch((err) => {
+              next(err);
+            });
+        }
+
+        //res.status(200).json(result);
       })
       .catch((err) => {
         console.log(err);
