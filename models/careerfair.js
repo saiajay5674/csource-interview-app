@@ -14,7 +14,8 @@ const careerfairSchema = mongoose.Schema({
         required: true
     },
     companies: [{
-        type: mongoose.Schema.Types.ObjectId, ref: 'Company',
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company',
         default: []
     }],
     students: [{

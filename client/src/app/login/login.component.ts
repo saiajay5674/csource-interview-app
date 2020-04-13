@@ -3,6 +3,7 @@ import { AuthService } from '../_services/auth.service'
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { NotificationService } from '../_services/notification.service';
+import { User } from '../_models/User';
 
 
 @Component({
@@ -14,12 +15,19 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
+  currentUser: User;
 
   constructor(private authService: AuthService,
     private router: Router,
-    private notif: NotificationService) { }
+    private notif: NotificationService) { 
+      this.authService.currentUser.subscribe(x => this.currentUser = x);
+  }
 
   ngOnInit() {
+  }
+
+  isAdmin() {
+    return this.currentUser && this.currentUser.role.toLowerCase() === 'admin';
   }
 
   login() {
@@ -33,7 +41,13 @@ export class LoginComponent implements OnInit {
       .pipe(first()).subscribe(
         data => {
           console.log(data);
-          this.router.navigate(['']);
+          
+          if(this.isAdmin()) {
+            this.router.navigate(['']);
+          }
+          else {
+            this.router.navigate(['/company']);
+          }
 
           this.notif.showNotif('Logged in as: ' + this.username, 'CONFIRMATION');
         },

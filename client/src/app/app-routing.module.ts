@@ -22,7 +22,8 @@ const routes = [
   },
   {
     path: 'manageCareerfair',
-    component: ManageCareerFairComponent
+    component: ManageCareerFairComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'careerfair',
@@ -38,8 +39,9 @@ const routes = [
     component: CheckinComponent
   },
   {
-    path: 'checked',
-    component: CheckedStudentsComponent
+    path: 'company',
+    component: CheckedStudentsComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
@@ -47,7 +49,8 @@ const routes = [
   },
   {
     path: 'statistics',
-    component: StatisticsComponent
+    component: StatisticsComponent,
+    canActivate: [AuthGuard]
   }
 ]
 

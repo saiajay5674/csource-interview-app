@@ -25,7 +25,7 @@ function login(req, res, next) {
                         return res.status(500).json({msg: 'JWT token failed ' + error});
                     }
 
-                    return res.status(200).json({user: users[0].username, role: users[0].role,  token: token});
+                    return res.status(200).json({_id: users[0]._id, user: users[0].username, role: users[0].role,  token: token});
                 });
             }
             else {
@@ -44,7 +44,7 @@ function login(req, res, next) {
                             return res.status(500).json({msg: 'JWT token failed ' + error});
                         }
     
-                        return res.status(200).json({user: users[0].username, role: users[0].role,  token: token});
+                        return res.status(200).json({_id: users[0]._id, user: users[0].username, role: users[0].role,  token: token});
                     });
                 }
                 else {
