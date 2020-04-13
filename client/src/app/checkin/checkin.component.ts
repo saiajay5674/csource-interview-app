@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from "@angul
 import { CheckinDialogComponent } from '../checkin-dialog/checkin-dialog.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StudentService } from '../_services/student.service' 
+import { CareerfairService } from '../_services/careerfair.service';
 
 @Component({
   selector: 'app-checkin',
@@ -15,9 +16,10 @@ export class CheckinComponent implements OnInit {
   passport: string;
   student: string;
 
-  constructor(public dialog: MatDialog, private formBuilder: FormBuilder, private studentService: StudentService) {
-
-     }
+  constructor(public dialog: MatDialog, 
+    private formBuilder: FormBuilder, 
+    private studentService: StudentService, 
+    private careerfairService: CareerfairService) { }
 
   ngOnInit() {
 
@@ -31,6 +33,20 @@ export class CheckinComponent implements OnInit {
       this.student = result.name;
       this.openDialog();
     })
+  }
+
+  getDateObj(time) {
+
+    const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
+
+    const now = new Date();
+
+    const year = now.getFullYear();
+    const day = now.getDate();
+    const month = monthNames[now.getMonth()];
+
+    return new Date(`${month} ${day} ${year} ${time}`);
   }
 
   
@@ -52,7 +68,9 @@ export class CheckinComponent implements OnInit {
     const dialogRef = this.dialog.open(CheckinDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-        console.log(result);
+        if (result) {
+          console.log(this.getDateObj(result.time));
+        }
     });
   }
 

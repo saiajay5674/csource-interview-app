@@ -13,7 +13,6 @@ import {map, startWith} from 'rxjs/operators';
 })
 export class CheckinDialogComponent implements OnInit {
 
-  company = new FormControl();
   studentName:string;
   form: FormGroup
   companies: Company[] = [];
@@ -33,15 +32,20 @@ export class CheckinDialogComponent implements OnInit {
   ngOnInit() {
 
     this.getCompanies();
-    this.filteredOptions = this.company.valueChanges.pipe(
+    this.filteredOptions = this.form.controls.company.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
     );
     
   }
 
-  private _filter(value: string): Company[] {
-    const filterValue = value.toLowerCase();
+  private _filter(value: any): Company[] {
+
+    var filterValue = '';
+
+    if (typeof value === "string") {
+      filterValue = value.toLowerCase();
+    }
 
     return this.companies.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
@@ -58,6 +62,10 @@ export class CheckinDialogComponent implements OnInit {
 
   close() {
     this.dialogRef.close();
+  }
+
+  getOptionText(option) {
+    return option.name;
   }
 
 }

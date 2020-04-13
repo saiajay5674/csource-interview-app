@@ -13,3 +13,7 @@
 button {
     width: 45%;
 }
+
+.company-logo {
+    background-size: cover;
+  }

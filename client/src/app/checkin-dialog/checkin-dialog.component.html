@@ -8,9 +8,10 @@
     <section>
       <mat-form-field class="field">
         <mat-label>Company</mat-label>
-        <input matInput placeholder="Company Name" [matAutocomplete]="auto" [formControl]="company" formControlName="company" required>
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-          <mat-option *ngFor="let company of filteredOptions | async" [value]="company.name">
+        <input matInput placeholder="Company Name" [matAutocomplete]="auto" formControlName="company" required>
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="getOptionText">
+          <mat-option *ngFor="let company of filteredOptions | async" [value]="company">
+            <img mat-card-avatar class="company-logo" src="{{'https://logo.clearbit.com/' + company.domain}}">
             {{company.name}}
           </mat-option>
         </mat-autocomplete>
