@@ -144,7 +144,7 @@ function addInterview(req, res, next) {
     }
 
     if (students.length == 0) {
-      saveStudent(req.body.student)
+      saveStudent(req.body.student, req.params.id)
         .then((student) => {
           let newInterview = new Interview({
             company: req.body.company,
@@ -181,7 +181,7 @@ function addInterview(req, res, next) {
   });
 }
 
-async function saveStudent(pid) {
+async function saveStudent(pid, careerfairId) {
   return new Promise((resolve, reject) => {
     edid
       .getStudentData(pid)
@@ -198,9 +198,20 @@ async function saveStudent(pid) {
             reject(error);
           }
 
-          if (student) {
-            resolve(student);
-          }
+          Careerfair.updateOne(
+            { _id: careerfairId },
+            { $addToSet: { students: student._id } },
+            (error, result) => {
+              if (error) {
+                reject(error);
+              }
+        
+              if (result) {
+                resolve(result);
+              }
+            }
+          );
+          
         });
       })
       .catch((error) => {

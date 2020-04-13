@@ -25,7 +25,12 @@ const careerfairSchema = mongoose.Schema({
     interviews: [{
         type: String,
         defualt: []
-    }]
+    }],
+    current: {
+        type: Boolean,
+        default: false,
+        required: true
+    }
 
 });
 
