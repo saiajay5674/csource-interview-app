@@ -36,8 +36,6 @@ export class StatisticsComponent implements OnInit {
   ngOnInit() {
 
     this.getCareerfair(this.id);
-    this.term = this.careerfair.term;
-    this.year = this.careerfair.year;
 
     this
     this.doughnutChart.push(new Chart('canvas1', {
