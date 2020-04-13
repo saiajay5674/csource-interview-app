@@ -75,7 +75,7 @@ function deleteCompany(req, res, next) {
 function getCompanyById(req, res, next) {
   Company.findById(req.params.id)
     .then((record) => {
-      console.log("\n\n *** getCompanyById node  ", record, " **\n");
+      console.log("\n\n *** getCompanyById node  ", req.body, " **\n");
       res.json(record);
     })
     .catch((err) => {
