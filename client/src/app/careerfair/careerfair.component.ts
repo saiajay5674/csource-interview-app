@@ -1,12 +1,13 @@
 import { Component, OnInit,  ViewChild } from '@angular/core';
 import { stringify } from 'querystring';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSlideToggleChange } from '@angular/material';
 import { Careerfair } from '../_models/Careerfair'
 import { CareerfairService } from '../_services/careerfair.service';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { CreateCareerfairComponent } from '../create-careerfair/create-careerfair.component'
 import { NotificationService } from '../_services/notification.service';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-careerfair',
@@ -18,8 +19,8 @@ export class CareerfairComponent implements OnInit {
   searchText: string;
 
   public displayedColumns = ['term', 'year', 'companies', 'students', 'interviews', 'details', 'statistics', 'active'];
-  careerfairs: Careerfair[];
-  dataSource: MatTableDataSource<Careerfair>;
+  careerfairs: Careerfair[] = [];
+  dataSource: MatTableDataSource<Careerfair> = new MatTableDataSource(this.careerfairs);
 
   @ViewChild(MatSort, {static: false}) set content(sort: MatSort) {
     this.dataSource.sort = sort;
@@ -64,5 +65,14 @@ export class CareerfairComponent implements OnInit {
         //this.notificationService.showNotif('Created ' + record.careerfair.term + record.careerfair.year, 'create');
       })
     })
+  }
+
+  onChange(event: MatSlideToggleChange, element: Careerfair) {
+
+    if (event.checked) {
+      this.careerfairService.updateCurrent(element._id).pipe(first()).subscribe( (result) => {
+        this.getCareerfairs();
+      })
+    }    
   }
 }

@@ -6,4 +6,5 @@ export class Careerfair {
   companies: string[];
   students: string[];
   interviews: string[];
+  current: Boolean;
 };
