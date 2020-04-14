@@ -15,6 +15,10 @@ const interviewSchema = mongoose.Schema({
     time: {
         type: Date,
         required: true
+    },
+    complete: {
+        type: Boolean,
+        default: false
     }
 });
 
