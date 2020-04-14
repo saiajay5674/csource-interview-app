@@ -21,9 +21,7 @@ export class StatisticsComponent implements OnInit {
   barChartColors = []
   id: string;
   careerfair: Careerfair = new Careerfair();
-  term: string;
-  year: number;
-  careerfairName: string;
+  students: Student[];
 
   constructor(
     private route: ActivatedRoute,
@@ -62,7 +60,7 @@ export class StatisticsComponent implements OnInit {
         legend: {
           display: true,
           labels: {
-            fontSize: 20
+            fontSize: 15
           }
         },
         title: {

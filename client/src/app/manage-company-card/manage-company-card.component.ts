@@ -16,7 +16,12 @@ export class ManageCompanyCardComponent implements OnInit {
   message = "show interviwee list";
   constructor(private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    //trim long company names
+    if (this.company.name.length > 7) {
+      this.company.name = this.company.name.substring(0, 5) + "...";
+    }
+  }
   list_interviewees() {
     this.router.navigate(["/checked"]);
   }
