@@ -20,4 +20,9 @@ router.patch('/company/:id', careerfairController.updateCompanyList);
 
 router.patch('/interview/:id', careerfairController.addInterview);
 
+//Set a career fair to current careerfair
+router.patch('/current/:id', careerfairController.setCurrent);
+
+router.get('/current', careerfairController.getCurrent);
+
 module.exports = router;
