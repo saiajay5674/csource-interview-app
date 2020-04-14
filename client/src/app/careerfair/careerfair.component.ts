@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, OnInit,  ViewChild } from '@angular/core';
 import { stringify } from 'querystring';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { Careerfair } from '../_models/Careerfair'
@@ -7,7 +7,6 @@ import { MatDialog, MatDialogConfig } from "@angular/material";
 import { CreateCareerfairComponent } from '../create-careerfair/create-careerfair.component'
 import { NotificationService } from '../_services/notification.service';
 import { Router } from '@angular/router';
-import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-careerfair',
