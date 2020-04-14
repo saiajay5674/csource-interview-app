@@ -7,21 +7,24 @@ import { MatDialog, MatDialogConfig } from "@angular/material";
 import { CreateCareerfairComponent } from '../create-careerfair/create-careerfair.component'
 import { NotificationService } from '../_services/notification.service';
 import { Router } from '@angular/router';
+import { pipe } from 'rxjs';
 
 @Component({
   selector: 'app-careerfair',
   templateUrl: './careerfair.component.html',
   styleUrls: ['./careerfair.component.css']
 })
-export class CareerfairComponent implements OnInit, AfterViewInit {
+export class CareerfairComponent implements OnInit {
 
   searchText: string;
 
-  public displayedColumns = ['term', 'year', 'companies', 'students', 'interviews', 'details', 'statistics'];
+  public displayedColumns = ['term', 'year', 'companies', 'students', 'interviews', 'details', 'statistics', 'active'];
   careerfairs: Careerfair[];
   dataSource: MatTableDataSource<Careerfair>;
 
-  @ViewChild(MatSort, {static: false}) sort: MatSort;
+  @ViewChild(MatSort, {static: false}) set content(sort: MatSort) {
+    this.dataSource.sort = sort;
+  }
 
   constructor(private careerfairService: CareerfairService,
     private dialog: MatDialog,
@@ -29,7 +32,6 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     this.getCareerfairs()
-    this.dataSource = new MatTableDataSource(this.careerfairs);
   }
 
   getCareerfairs() {
@@ -37,10 +39,6 @@ export class CareerfairComponent implements OnInit, AfterViewInit {
       this.careerfairs = records;
       this.dataSource = new MatTableDataSource(this.careerfairs);
     });
-  }
-
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
