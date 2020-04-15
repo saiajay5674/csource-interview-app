@@ -13,22 +13,24 @@ function getCareerfairs(req, res, next) {
 
 function getCareerfair(req, res, next) {
   Careerfair.findOne({ _id: req.params.id })
-    .populate([{
-      path: "interviews",
-      model: "Interview",
-      populate: [
-        { path: "company", model: "Company" },
-        { path: "student", model: "Student" },
-      ],
-    },
-    {
-      path: "companies",
-      model: 'Company'
-    },
-    {
-      path: "students",
-      model: 'Student'
-    }])
+    .populate([
+      {
+        path: "interviews",
+        model: "Interview",
+        populate: [
+          { path: "company", model: "Company" },
+          { path: "student", model: "Student" },
+        ],
+      },
+      {
+        path: "companies",
+        model: "Company",
+      },
+      {
+        path: "students",
+        model: "Student",
+      },
+    ])
     .exec((error, careerfair) => {
       if (error) {
         return res.status(500).json(error);
@@ -40,13 +42,11 @@ function getCareerfair(req, res, next) {
 }
 
 function addCareerfair(req, res, next) {
-
   Careerfair.find().count((error, count) => {
-
     if (error) {
       return res.status(500).json(error);
     }
-    
+
     let currentFair = false;
 
     if (count == 0) {
@@ -56,12 +56,12 @@ function addCareerfair(req, res, next) {
     let newCareerfair = new Careerfair({
       term: req.body.term,
       year: req.body.year,
-      current: currentFair
+      current: currentFair,
     });
-  
+
     newCareerfair.save((error, careerfair) => {
       if (error) {
-        res.json({ msg: "Failed to add careerfair " + error, error});
+        res.json({ msg: "Failed to add careerfair " + error, error });
       } else {
         res.json({ msg: "New careerfair has been added" });
       }
@@ -228,13 +228,12 @@ async function saveStudent(pid, careerfairId) {
               if (error) {
                 reject(error);
               }
-        
+
               if (result) {
                 resolve(result);
               }
             }
           );
-          
         });
       })
       .catch((error) => {
@@ -270,34 +269,40 @@ async function saveInterview(newInterview, careerfairId) {
 }
 
 function setCurrent(req, res, next) {
-
-  Careerfair.update({current: true}, { "$set": { "current": false}}, (error, result) => {
-
-    if (error) {
-      return res.status(500).json(error);
-    }
-
-    Careerfair.update({_id: req.params.id}, { "$set": { "current": true}}, (error, result) => {
-
+  Careerfair.update(
+    { current: true },
+    { $set: { current: false } },
+    (error, result) => {
       if (error) {
         return res.status(500).json(error);
       }
 
-      return res.status(200).json(result);
-    });
-  });
+      Careerfair.update(
+        { _id: req.params.id },
+        { $set: { current: true } },
+        (error, result) => {
+          if (error) {
+            return res.status(500).json(error);
+          }
+
+          return res.status(200).json(result);
+        }
+      );
+    }
+  );
 }
 
 function getCurrent(req, res, next) {
+  console.log("\n\n ** got here");
 
-  Careerfair.findOne({current: true}, (error, careerfair) => {
-
-    if (error) {
-      return res.status(500).json(error);
-    }
-
-    return res.status(200).json(careerfair);
-  });
+  Careerfair.findOne({ current: true })
+    .then((mess) => {
+      console.log("\n\n ** message is ", mess);
+    })
+    .catch((err) => {
+      console.log("\n\n%%% err  ", err);
+      next(err);
+    });
 }
 
 module.exports = {
@@ -308,5 +313,5 @@ module.exports = {
   updateCompanyList,
   addInterview,
   setCurrent,
-  getCurrent
+  getCurrent,
 };
