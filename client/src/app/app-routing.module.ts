@@ -40,8 +40,7 @@ const routes = [
   },
   {
     path: 'company',
-    component: CheckedStudentsComponent,
-    canActivate: [AuthGuard]
+    component: CheckedStudentsComponent
   },
   {
     path: 'login',

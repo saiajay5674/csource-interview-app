@@ -35,12 +35,21 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
       [{ name: "Jack", time: "08:00", status: "checked in" },
       { name: "Jessica", time: "09:00", status: "checked in" },
       { name: "Peter", time: "08:30", status: "checked in" },
-      { name: "Tony", time: "09:30", status: "checked in" },
-      { name: "Jason", time: "10:00", status: "checked in" }];
+      { name: "Tony", time: "09:10", status: "checked in" },
+      { name: "Tom", time: "09:20", status: "checked in" },
+      { name: "Abc", time: "09:30", status: "checked in" },
+      { name: "Doyouno", time: "09:40", status: "checked in" },
+      { name: "Jason", time: "10:00", status: "checked in" },
+      { name: "Look", time: "10:10", status: "checked in" },
+      { name: "View", time: "10:20", status: "checked in" },
+      { name: "Todo", time: "10:30", status: "checked in" },
+      ];
     this.dataSource = new MatTableDataSource(interviewees);
 
     this.selectDataSource = new MatTableDataSource(this.selectDataItems);
     this.selectDataSource.sort = this.sortBySelect;
+    delete this.dataSourceFieldSortMap.time;
+    this.dataSourceSort();
   }
 
   ngAfterViewInit() {
@@ -65,6 +74,11 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(dataItem);
     // move data
     this.selectDataSource = new MatTableDataSource(this.selectDataItems);
+
+    delete this.dataSourceSelectFieldSortMap.time;
+    setTimeout(() => {
+      this.sortData();
+    }, 200);
   }
 
   sortData(field: string = 'time'): void {
@@ -77,7 +91,7 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     this.selectDataSource = new MatTableDataSource(this.selectDataItems);
   }
 
-  dataSourceSort(field: string): void {
+  dataSourceSort(field: string = 'time'): void {
     this.dataSourceFieldSortMap[field] = !this.dataSourceFieldSortMap[field];
     const dataItem: Interviewees[] = this.dataSource.data;
     if (this.dataSourceFieldSortMap[field]) {
