@@ -13,14 +13,22 @@ function getCareerfairs(req, res, next) {
 
 function getCareerfair(req, res, next) {
   Careerfair.findOne({ _id: req.params.id })
-    .populate({
+    .populate([{
       path: "interviews",
       model: "Interview",
       populate: [
         { path: "company", model: "Company" },
         { path: "student", model: "Student" },
       ],
-    })
+    },
+    {
+      path: "companies",
+      model: 'Company'
+    },
+    {
+      path: "students",
+      model: 'Student'
+    }])
     .exec((error, careerfair) => {
       if (error) {
         return res.status(500).json(error);

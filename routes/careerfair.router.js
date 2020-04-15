@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const router = express.Router();
 const careerfairController = require('../controllers/careerfair.controller');
 
@@ -23,6 +24,9 @@ router.patch('/interview/:id', careerfairController.addInterview);
 //Set a career fair to current careerfair
 router.patch('/current/:id', careerfairController.setCurrent);
 
-router.get('/current', careerfairController.getCurrent);
+router.get('/current/:id', (req, res) => {
+    console.log('got in there');
+    return res.json({})
+});
 
 module.exports = router;

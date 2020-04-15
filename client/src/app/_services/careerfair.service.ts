@@ -34,11 +34,26 @@ export class CareerfairService {
     return this.http.delete<any>(`http://localhost:3000/api/careerfair/${careerfair._id}`);
   }
 
+  addInterview(id, companyId, studentId, time) {
+
+    let data = {
+      company: companyId,
+      student: studentId,
+      time
+    };
+
+    return this.http.patch<any>(`http://localhost:3000/api/interview/${id}`, data);
+  }
+
   updateCompanyList(id){
     return this.http.patch<any>(`http://localhost:3000/api/careerfair/company/${id}`, id);
   }
 
   updateCurrent(id) {
     return this.http.patch<any>(`http://localhost:3000/api/careerfair/current/${id}`, id);
+  }
+
+  getCurrent(): Observable<Careerfair> {
+    return this.http.get<Careerfair>(`http://localhost:3000/api/careerfair/current`);
   }
 }

@@ -4,6 +4,7 @@ import { CheckinDialogComponent } from '../checkin-dialog/checkin-dialog.compone
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StudentService } from '../_services/student.service' 
 import { CareerfairService } from '../_services/careerfair.service';
+import { Careerfair } from '../_models/Careerfair';
 
 @Component({
   selector: 'app-checkin',
@@ -15,14 +16,14 @@ export class CheckinComponent implements OnInit {
   form: FormGroup;
   passport: string;
   student: string;
+  currentFair: Careerfair
 
   constructor(public dialog: MatDialog, 
     private formBuilder: FormBuilder, 
     private studentService: StudentService, 
-    private careerfairService: CareerfairService) { }
+    private careerfairService: CareerfairService) {}
 
   ngOnInit() {
-
     this.form = this.formBuilder.group({
       passport: [null, [Validators.required, Validators.pattern("[9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]")]]
     })
@@ -69,7 +70,7 @@ export class CheckinComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
         if (result) {
-          console.log(this.getDateObj(result.time));
+
         }
     });
   }
