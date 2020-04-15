@@ -35,7 +35,10 @@ export class CareerfairService {
   }
 
   updateCompanyList(id){
-    console.log("\n\n===> updateComapnyList called angular ", id, "==\n")
     return this.http.patch<any>(`http://localhost:3000/api/careerfair/company/${id}`, id);
+  }
+
+  updateCurrent(id) {
+    return this.http.patch<any>(`http://localhost:3000/api/careerfair/current/${id}`, id);
   }
 }

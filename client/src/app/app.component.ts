@@ -16,7 +16,7 @@ export class AppComponent {
     this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 
-  get isAdmin() {
+  isAdmin() {
     return this.currentUser && this.currentUser.role.toLowerCase() === 'admin';
   }
 
