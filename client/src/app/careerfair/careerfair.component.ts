@@ -1,6 +1,6 @@
 import { Component, OnInit,  ViewChild } from '@angular/core';
 import { stringify } from 'querystring';
-import { MatTableDataSource, MatSort, MatSlideToggleChange } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSlideToggleChange, Sort } from '@angular/material';
 import { Careerfair } from '../_models/Careerfair'
 import { CareerfairService } from '../_services/careerfair.service';
 import { MatDialog, MatDialogConfig } from "@angular/material";
@@ -22,22 +22,25 @@ export class CareerfairComponent implements OnInit {
   careerfairs: Careerfair[] = [];
   dataSource: MatTableDataSource<Careerfair> = new MatTableDataSource(this.careerfairs);
 
-  @ViewChild(MatSort, {static: false}) set content(sort: MatSort) {
-    this.dataSource.sort = sort;
-  }
+  @ViewChild(MatSort, {static:false}) sort: MatSort;
 
   constructor(private careerfairService: CareerfairService,
     private dialog: MatDialog,
     private notificationService: NotificationService, private router: Router) { }
 
   ngOnInit() {
-    this.getCareerfairs()
+    this.getCareerfairs();
   }
 
   getCareerfairs() {
     this.careerfairService.getCareerfairs().subscribe( (records) => {
       this.careerfairs = records;
       this.dataSource = new MatTableDataSource(this.careerfairs);
+      this.dataSource.sort = this.sort;
+      const sortState: Sort = {active: 'year', direction: 'desc'};
+      this.sort.active = sortState.active;
+      this.sort.direction = sortState.direction;
+      this.sort.sortChange.emit(sortState);
     });
   }
 
@@ -73,6 +76,6 @@ export class CareerfairComponent implements OnInit {
       this.careerfairService.updateCurrent(element._id).pipe(first()).subscribe( (result) => {
         this.getCareerfairs();
       })
-    }    
+    }
   }
 }
