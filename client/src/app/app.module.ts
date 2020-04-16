@@ -35,6 +35,10 @@ import { CreateCareerfairComponent } from './create-careerfair/create-careerfair
 import { StatisticsComponent } from './statistics/statistics.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { LoaderComponent } from './loader/loader.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
+import { JwtInterceptor } from './interceptors/jwt.interceptor'
 
 
 
@@ -57,7 +61,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ManageCareerFairComponent,
     ManageCompanyCardComponent,
     CreateCareerfairComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +102,18 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatFormFieldModule,
     MatInputModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

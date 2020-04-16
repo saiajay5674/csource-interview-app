@@ -13,6 +13,7 @@ import { AuthGuard } from './_services/auth-guard.service';
 
 import {ManageCareerFairComponent} from './manage-career-fair/manage-career-fair.component';
 import { StatisticsComponent } from './statistics/statistics.component';
+import { LoaderComponent } from './loader/loader.component';
 
 const routes = [
   {
@@ -50,6 +51,10 @@ const routes = [
     path: 'statistics',
     component: StatisticsComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'load',
+    component: LoaderComponent
   }
 ]
 
