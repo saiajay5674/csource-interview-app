@@ -12,8 +12,7 @@ p {
   background-size: cover;
 }
 
-.menu{
-
+.menu {
   grid-area: menu;
   justify-self: end;
   align-self: start;
@@ -24,7 +23,6 @@ p {
 }
 
 .code-block {
-
   padding-top: 20px;
 }
 
@@ -32,6 +30,10 @@ p {
   width: fit-content;
 }
 
+.email-button {
+  position: relative;
+  border: unset;
+}
 
 pre {
   background: #f4f4f4;
