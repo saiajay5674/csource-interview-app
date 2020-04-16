@@ -35,6 +35,7 @@ import { CreateCareerfairComponent } from './create-careerfair/create-careerfair
 import { StatisticsComponent } from './statistics/statistics.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { SendEmailComponent } from './send-email/send-email.component';
 
 
 
@@ -57,7 +58,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ManageCareerFairComponent,
     ManageCompanyCardComponent,
     CreateCareerfairComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    SendEmailComponent
   ],
   imports: [
     BrowserModule,
