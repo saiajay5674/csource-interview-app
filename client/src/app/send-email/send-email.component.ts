@@ -17,8 +17,9 @@ export class SendEmailComponent implements OnInit {
   public fullScreenState: Boolean = false;
 
   public addressee: String = '';
-  public subject: String = '';
+  public subject: String = 'This is your username and password for VT career fair';
   public body: String = '';
+  public to: String = '';
 
 
   constructor() { }
@@ -34,6 +35,7 @@ export class SendEmailComponent implements OnInit {
   sendEmail(): void {
     const data = {
       addressee: this.addressee,
+      to: this.to,
       subject: this.subject,
       body: this.body,
     };

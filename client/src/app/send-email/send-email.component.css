@@ -42,7 +42,7 @@
 }
 
 .send-mail-body .addressee-and-subject .label {
-  width: 80px;
+  width: 150px;
   color: #666;
   padding: 5px 10px;
 }
@@ -60,7 +60,7 @@
 .send-mail-body .body {
   left: 0px;
   right: 0px;
-  top: 105px;
+  top: 150px;
   bottom: 0px;
   position: absolute;
 }
