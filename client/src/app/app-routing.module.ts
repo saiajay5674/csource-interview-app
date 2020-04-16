@@ -51,10 +51,6 @@ const routes = [
     path: 'statistics',
     component: StatisticsComponent,
     canActivate: [AuthGuard]
-  },
-  {
-    path: 'load',
-    component: LoaderComponent
   }
 ]
 
