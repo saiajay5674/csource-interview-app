@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService,
     private router: Router,
-    private notif: NotificationService) { 
+    private notif: NotificationService) {
       this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 
@@ -41,12 +41,12 @@ export class LoginComponent implements OnInit {
       .pipe(first()).subscribe(
         data => {
           console.log(data);
-          
+
           if(this.isAdmin()) {
             this.router.navigate(['']);
           }
           else {
-            this.router.navigate(['/company']);
+            this.router.navigate(['/company', {id: data._id}]);
           }
 
           this.notif.showNotif('Logged in as: ' + this.username, 'CONFIRMATION');
