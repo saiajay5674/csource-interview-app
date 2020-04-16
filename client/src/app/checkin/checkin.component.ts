@@ -26,7 +26,11 @@ export class CheckinComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       passport: [null, [Validators.required, Validators.pattern("[9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]")]]
-    })
+    });
+
+    this.careerfairService.getCurrent().subscribe((result) => {
+      this.currentFair = result;
+    });
   }
 
   getStudent() {
