@@ -49,3 +49,16 @@ pre {
   display: block;
   margin-left: 5px;
 }
+
+.send-email {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 910;
+}

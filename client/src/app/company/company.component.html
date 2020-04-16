@@ -30,12 +30,15 @@
     <button mat-menu-item class="copy-button" matTooltip="Copy" (click)="copyToClip()">
       <mat-icon style="font-size: medium; width: fit-content;">assignment</mat-icon>
     </button>
-    
+
   </div>
   <div>
-    <button class="email-button" matTooltip="Send email" (click)="copyToClip()">
-      <mat-icon  >email</mat-icon>
+    <button class="email-button" matTooltip="Send email" (click)="displaySendEmail()">
+      <mat-icon>email</mat-icon>
     </button>
 
+  </div>
+  <div class="send-email" *ngIf="displaySendEmailState">
+    <send-email (onClose)="displaySendEmail()" (onSend)="handlSendEmail($event)" [company]="company" ></send-email>
   </div>
 </mat-card>

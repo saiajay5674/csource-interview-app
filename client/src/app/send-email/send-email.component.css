@@ -1,0 +1,83 @@
+.send-mail-body {
+  font-size: 12px;
+  background: #fff;
+  min-height: 400px;
+  min-width: 600px;
+  position: relative;
+}
+
+.send-mail-body.full {
+  height: 100vh;
+  width: 100vw;
+}
+
+.send-mail-body .icons {
+  cursor: pointer;
+}
+
+.send-mail-body .title {
+  display: flex;
+  color: #fff;
+  align-items: center;
+  padding: 5px 0px;
+  background-color: #222;
+}
+
+.send-mail-body .title .tips {
+  flex: 1;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.send-mail-body .addressee {
+  display: flex;
+  align-content: center;
+}
+
+.send-mail-body .addressee-and-subject {
+  display: flex;
+  margin: 5px 0px;
+  align-content: center;
+  border-bottom: 1px solid #eee;
+}
+
+.send-mail-body .addressee-and-subject .label {
+  width: 80px;
+  color: #666;
+  padding: 5px 10px;
+}
+
+.send-mail-body .addressee-and-subject input {
+  flex: 1;
+  width: 100%;
+  border: none;
+}
+
+.send-mail-body .body textarea:focus, .send-mail-body .addressee-and-subject input:focus {
+  outline: unset;
+}
+
+.send-mail-body .body {
+  left: 0px;
+  right: 0px;
+  top: 105px;
+  bottom: 0px;
+  position: absolute;
+}
+
+.send-mail-body .body textarea {
+  width: 100%;
+  height: calc(100% - 44px);
+  resize: none;
+  border: none;
+  padding: 5px 10px;
+}
+
+.send-mail-body .body button {
+  height: 30px;
+  padding: 0px 20px;
+  margin: 0px 10px;
+  border-radius: 5px;
+  background: #1a73e8;
+  color: #fff;
+}
