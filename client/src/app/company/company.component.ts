@@ -1,3 +1,4 @@
+
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { Company } from '../_models/Company'
 import { CreateCompanyComponent } from '../create-company/create-company.component'

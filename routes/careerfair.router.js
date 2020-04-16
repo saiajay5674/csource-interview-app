@@ -6,7 +6,11 @@ const careerfairController = require("../controllers/careerfair.controller");
 //Get ALL career fairs
 router.get("/", careerfairController.getCareerfairs);
 
+//Get current careerfair
 router.get("/current", careerfairController.getCurrent);
+
+//Get current populated
+router.get('/current/:id', careerfairController.getCurrentInterviews);
 
 //Get a specific careerfair
 router.get("/:id", careerfairController.getCareerfair);

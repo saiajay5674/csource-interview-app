@@ -19,8 +19,9 @@ export class CheckinDialogComponent implements OnInit {
   filteredOptions: Observable<Company[]>;
 
   constructor(private fb: FormBuilder,public dialogRef: MatDialogRef<CheckinDialogComponent>, private companyService: CompanyService,
-    @Inject(MAT_DIALOG_DATA) {name, company, time} ) {
+    @Inject(MAT_DIALOG_DATA) {name, company, time, companies} ) {
       this.studentName = name;
+      this.companies = companies;
       
       this.form = this.fb.group({
         company: [company, Validators.required],
@@ -31,7 +32,6 @@ export class CheckinDialogComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getCompanies();
     this.filteredOptions = this.form.controls.company.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value))
@@ -50,12 +50,6 @@ export class CheckinDialogComponent implements OnInit {
     return this.companies.filter(option => option.name.toLowerCase().indexOf(filterValue) === 0);
   }
   
-  getCompanies() {
-    this.companyService.getCompanies().subscribe( records => {
-      this.companies = records;
-    })
-  }
-
   save(){
     this.dialogRef.close(this.form.value);
   }

@@ -5,6 +5,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { StudentService } from '../_services/student.service' 
 import { CareerfairService } from '../_services/careerfair.service';
 import { Careerfair } from '../_models/Careerfair';
+import { first } from 'rxjs/operators';
+import { NotificationService } from '../_services/notification.service';
 
 @Component({
   selector: 'app-checkin',
@@ -21,19 +23,26 @@ export class CheckinComponent implements OnInit {
   constructor(public dialog: MatDialog, 
     private formBuilder: FormBuilder, 
     private studentService: StudentService, 
-    private careerfairService: CareerfairService) {}
+    private careerfairService: CareerfairService,
+    private notifService: NotificationService) {}
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       passport: [null, [Validators.required, Validators.pattern("[9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]")]]
-    })
+    });
+
+    this.careerfairService.getCurrent().subscribe((result) => {
+      this.currentFair = result;
+    });
   }
 
   getStudent() {
     this.studentService.getStudent(this.passport).subscribe( result => {
       this.student = result.name;
       this.openDialog();
-    })
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   getDateObj(time) {
@@ -63,14 +72,17 @@ export class CheckinComponent implements OnInit {
     dialogConfig.data = {
       name: this.student,
       company: '',
-      time: ''
+      time: '',
+      companies: this.currentFair.companies
     };
 
     const dialogRef = this.dialog.open(CheckinDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
         if (result) {
-
+          this.careerfairService.addInterview(this.currentFair._id, result.company._id, this.passport, this.getDateObj(result.time)).pipe(first()).subscribe((result) => {
+            this.notifService.showNotif('Checked-in', 'SUCCESS');
+          });
         }
     });
   }

@@ -1,5 +1,9 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatSort } from '@angular/material';
+import { Careerfair } from '../_models/Careerfair';
+import { CareerfairService } from '../_services/careerfair.service';
+import { Interview } from '../_models/Interview';
+import { ActivatedRoute } from '@angular/router';
 
 class Interviewees {
   name: string;
@@ -24,13 +28,25 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
   public selectDataItems: Interviewees[] = [];
 
+  careerfair: Careerfair;
+  interviews: Interview[];
+  id;
 
   dataSourceFieldSortMap: any = {};
   dataSourceSelectFieldSortMap: any = {};
 
-  constructor() { }
+  constructor(
+    private careerfairService: CareerfairService,
+    private route: ActivatedRoute
+    ) { this.id = this.route.snapshot.paramMap.get("id"); }
 
   ngOnInit() {
+
+    this.careerfairService.getCurrent().subscribe( (records) => {
+      this.careerfair = records;
+    })
+    this.getInterviews(this.careerfair);
+
     const interviewees: Interviewees[] =
       [{ name: "Jack", time: "08:00", status: "checked in" },
       { name: "Jessica", time: "09:00", status: "checked in" },
@@ -100,6 +116,15 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
       dataItem.sort((a, b) => b[field].localeCompare(a[field]));
     }
     this.dataSource = new MatTableDataSource(dataItem);
+  }
+
+  getInterviews(careerfair) {
+    var i;
+    for ( i=0; i<careerfair.interviews.length(); i++) {
+      if (careerfair.interviews[i].company == this.id) {
+        this.interviews.push(careerfair.interview[i]);
+      }
+    }
   }
 
 }
