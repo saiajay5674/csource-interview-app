@@ -10,7 +10,7 @@ router.get("/", careerfairController.getCareerfairs);
 router.get("/current", careerfairController.getCurrent);
 
 //Get current populated
-router.get('/current/:id', careerfairController.getCurrentPopulated);
+router.get('/current/:id', careerfairController.getCurrentInterviews);
 
 //Get a specific careerfair
 router.get("/:id", careerfairController.getCareerfair);
