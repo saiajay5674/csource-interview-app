@@ -292,17 +292,73 @@ function setCurrent(req, res, next) {
   );
 }
 
-function getCurrent(req, res, next) {
-  console.log("\n\n ** got here");
+function getCurrentPopulated(req, res, next) {
 
   Careerfair.findOne({ current: true })
-    .then((mess) => {
-      console.log("\n\n ** message is ", mess);
+  .populate([
+    {
+      path: "interviews",
+      model: "Interview",
+      populate: [
+        { path: "company", model: "Company" },
+        { path: "student", model: "Student" },
+      ],
+    },
+    {
+      path: "companies",
+      model: "Company",
+    },
+    {
+      path: "students",
+      model: "Student",
+    },
+  ])
+  .exec((error, careerfair) => {
+
+    if (error) {
+      return res.status(500).json(error);
+    }
+
+    return res.status(200).json(careerfair);
+  });
+}
+
+
+function getCurrentInterviews(req, res, next) {
+
+  Careerfair.find({current: true})
+  .populate(
+    {
+      path: "interviews",
+      model: "Interview",
+      populate: [
+        { path: "company", model: "Company" },
+        { path: "student", model: "Student" },
+      ],
     })
-    .catch((err) => {
-      console.log("\n\n%%% err  ", err);
-      next(err);
-    });
+  .exec((error, careerfair) => {
+
+    if (error) {
+      return res.status(500).json(error);
+    }
+
+    return res.status(200).json(careerfair);
+
+  });
+}
+
+function getCurrent(req, res, next) {
+
+  Careerfair.findOne({ current: true })
+  .populate({path: 'companies', model: 'Company'})
+  .exec((error, careerfair) => {
+    
+    if (error) {
+      return res.status(500).json(error);
+    }
+
+    return res.status(200).json(careerfair);
+  });
 }
 
 module.exports = {
@@ -314,4 +370,5 @@ module.exports = {
   addInterview,
   setCurrent,
   getCurrent,
+  getCurrentPopulated
 };
