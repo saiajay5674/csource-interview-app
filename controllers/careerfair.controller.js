@@ -370,5 +370,6 @@ module.exports = {
   addInterview,
   setCurrent,
   getCurrent,
-  getCurrentPopulated
+  getCurrentPopulated,
+  getCurrentInterviews
 };
