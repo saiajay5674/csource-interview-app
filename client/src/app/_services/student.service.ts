@@ -8,7 +8,6 @@ export class StudentService {
   constructor(private http: HttpClient) { }
 
   getStudent(idNumber: string): Observable<any>{
-
     return this.http.get<any>(`http://localhost:3000/api/students/${idNumber}`);
   } 
 

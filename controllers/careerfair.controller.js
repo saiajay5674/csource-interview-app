@@ -155,6 +155,19 @@ function updateCompanyList(req, res, next) {
   }
 }
 
+
+async function addInterview2(req, res, next) {
+
+  const passportHash = crypto.createHash("md5").update(req.body.student, "utf8").digest("hex");
+
+  const students = await Student.find({passport: passportHash});
+
+  if (students.length == 0) {
+
+  }
+
+}
+
 function addInterview(req, res, next) {
   const passportHash = crypto
     .createHash("md5")
@@ -186,20 +199,33 @@ function addInterview(req, res, next) {
         .catch((error) => {
           return res.status(500).json(error);
         });
-    } else {
+    } 
+    else {
+
+      console.log(students);
       let newInterview = new Interview({
         company: req.body.company,
         student: students[0]._id,
         time: req.body.time,
       });
 
-      saveInterview(newInterview, req.params.id)
+      Careerfair.updateOne(
+      { _id: req.params.id },
+      { $addToSet: { students: students[0]._id } },
+      (error, result) => {
+        if (error) {
+          reject(error);
+        }
+
+        saveInterview(newInterview, req.params.id)
         .then((result) => {
           return res.status(200).json(result);
         })
         .catch((error) => {
           return res.status(500).json(error);
         });
+
+      });      
     }
   });
 }
@@ -230,7 +256,7 @@ async function saveStudent(pid, careerfairId) {
               }
 
               if (result) {
-                resolve(result);
+                resolve(student);
               }
             }
           );
@@ -243,6 +269,7 @@ async function saveStudent(pid, careerfairId) {
 }
 
 async function saveInterview(newInterview, careerfairId) {
+
   return new Promise((resolve, reject) => {
     newInterview.save((error, interview) => {
       if (error) {

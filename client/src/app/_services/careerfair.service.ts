@@ -42,7 +42,7 @@ export class CareerfairService {
       time
     };
 
-    return this.http.patch<any>(`http://localhost:3000/api/interview/${id}`, data);
+    return this.http.patch<any>(`http://localhost:3000/api/careerfair/interview/${id}`, data);
   }
 
   updateCompanyList(id){
