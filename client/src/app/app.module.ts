@@ -39,7 +39,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { JwtInterceptor } from './interceptors/jwt.interceptor'
-
+import { SendEmailComponent } from './send-email/send-email.component';
 
 
 
@@ -62,7 +62,8 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor'
     ManageCompanyCardComponent,
     CreateCareerfairComponent,
     StatisticsComponent,
-    LoaderComponent
+    LoaderComponent,
+    SendEmailComponent
   ],
   imports: [
     BrowserModule,

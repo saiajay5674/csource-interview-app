@@ -12,8 +12,7 @@ p {
   background-size: cover;
 }
 
-.menu{
-
+.menu {
   grid-area: menu;
   justify-self: end;
   align-self: start;
@@ -24,7 +23,6 @@ p {
 }
 
 .code-block {
-
   padding-top: 20px;
 }
 
@@ -32,6 +30,10 @@ p {
   width: fit-content;
 }
 
+.email-button {
+  position: relative;
+  border: unset;
+}
 
 pre {
   background: #f4f4f4;
@@ -46,4 +48,17 @@ pre {
   padding: 1em 1.5em;
   display: block;
   margin-left: 5px;
+}
+
+.send-email {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+  background: rgba(0, 0, 0, 0.2);
+  z-index: 910;
 }

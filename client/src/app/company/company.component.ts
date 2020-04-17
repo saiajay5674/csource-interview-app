@@ -1,4 +1,5 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { Company } from '../_models/Company'
 import { CreateCompanyComponent } from '../create-company/create-company.component'
 import { MatDialog, MatDialogConfig } from "@angular/material";
@@ -15,16 +16,18 @@ import { ManageCompaniesComponent } from '../manage-companies/manage-companies.c
 export class CompanyComponent implements OnInit {
   @Input() company: Company;
 
+  public displaySendEmailState: Boolean = false;
+
   constructor(private companyService: CompanyService,
     private notificationService: NotificationService,
     private manageCompanies: ManageCompaniesComponent
-    ) { }
+  ) { }
 
   ngOnInit() {
 
   }
 
-  copyToClip(){
+  copyToClip() {
 
     const selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
@@ -46,4 +49,16 @@ export class CompanyComponent implements OnInit {
     })
   }
 
+  displaySendEmail(): void {
+    this.displaySendEmailState = !this.displaySendEmailState;
+  }
+
+  handlerClose(): void {
+    this.displaySendEmailState = false;
+  }
+
+  handlSendEmail(args): void {
+    console.log(args);
+    this.handlerClose();
+  }
 }
