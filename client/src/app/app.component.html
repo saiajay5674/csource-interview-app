@@ -10,10 +10,13 @@
   <mat-toolbar class="tool">
 
     <mat-toolbar-row>
-      <button mat-button class="btn btn-primary" style="background-color: transparent;" routerLink="/">Career Fairs</button>
-      <button mat-button class="btn btn-primary" style="background-color: transparent;" routerLink="/manage-companies">Manage Companies</button>
+      <div *ngIf="isAdmin()">
+        <button mat-button class="btn btn-primary" style="background-color: transparent;" routerLink="/">Career Fairs</button>
+        <button mat-button class="btn btn-primary" style="background-color: transparent;" routerLink="/manage-companies">Manage Companies</button>
+      </div>  
       <span class="spacer"></span>
       <button mat-button class="btn btn-primary" style="background-color: transparent;" (click)="logout()">Logout</button>
+      
     </mat-toolbar-row>
 
 
