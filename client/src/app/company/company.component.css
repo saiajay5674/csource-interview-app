@@ -62,3 +62,9 @@ pre {
   background: rgba(0, 0, 0, 0.2);
   z-index: 910;
 }
+
+.position {
+  position: absolute;
+  left: 265px;
+  top: 120px;
+}
