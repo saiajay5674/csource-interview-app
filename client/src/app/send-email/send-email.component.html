@@ -1,0 +1,44 @@
+<div class="send-mail-body" [ngClass]="{'full':fullScreenState}" >
+
+  <div class="title">
+    <div class="tips">
+      New email
+    </div>
+    <div class="icons">
+      <mat-icon (click)="fullScreen(false)">fullscreen_exit</mat-icon>
+      <mat-icon (click)="fullScreen(true)">fullscreen</mat-icon>
+      <mat-icon (click)="close()">close</mat-icon>
+    </div>
+  </div>
+
+
+  <div class="addressee-and-subject">
+    <div class="label">
+      Your email address 
+    </div>
+    <input type="text" [(ngModel)]='addressee'>
+
+  </div>
+  <div class="addressee-and-subject">
+    <div class="label">
+      To
+    </div>
+    <input type="text" [(ngModel)]='to'>
+
+  </div>
+  <div class="addressee-and-subject">
+    <div class="label">
+      Subject
+    </div>
+    <input type="text" [(ngModel)]='subject'>
+
+  </div>
+  <div class="body">
+    <textarea [(ngModel)]='body'></textarea>
+
+    <button class="send" (click)="sendEmail()">
+      Send
+    </button>
+
+  </div>
+</div>

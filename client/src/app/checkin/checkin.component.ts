@@ -7,6 +7,7 @@ import { CareerfairService } from '../_services/careerfair.service';
 import { Careerfair } from '../_models/Careerfair';
 import { first } from 'rxjs/operators';
 import { NotificationService } from '../_services/notification.service';
+import { LoaderService } from '../_services/loader.service';
 
 @Component({
   selector: 'app-checkin',
@@ -24,15 +25,16 @@ export class CheckinComponent implements OnInit {
     private formBuilder: FormBuilder, 
     private studentService: StudentService, 
     private careerfairService: CareerfairService,
-    private notifService: NotificationService) {}
+    private notifService: NotificationService,
+    private loader: LoaderService) {
+      this.careerfairService.getCurrent().subscribe((result) => {
+        this.currentFair = result;
+      });
+    }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       passport: [null, [Validators.required, Validators.pattern("[9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]")]]
-    });
-
-    this.careerfairService.getCurrent().subscribe((result) => {
-      this.currentFair = result;
     });
   }
 
@@ -83,7 +85,10 @@ export class CheckinComponent implements OnInit {
           this.careerfairService.addInterview(this.currentFair._id, result.company._id, this.passport, this.getDateObj(result.time)).pipe(first()).subscribe((result) => {
             this.notifService.showNotif('Checked-in', 'SUCCESS');
           });
+          this.passport = '';
         }
+
+        this.passport = '';
     });
   }
 
