@@ -28,8 +28,8 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
   public selectDataItems: Interviewees[] = [];
 
-  careerfair: Careerfair;
   interviews: Interview[];
+  careerfair: Careerfair;
   id;
 
   dataSourceFieldSortMap: any = {};
