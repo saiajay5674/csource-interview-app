@@ -13,7 +13,7 @@ import { CareerfairService } from "../_services/careerfair.service";
 export class ManageCareerFairComponent implements OnInit {
   careerfair: Careerfair = new Careerfair();
   id: string;
-  label
+  label;
 
   inactive_company_list: Company[] = [];
   active_company_list: Company[] = [];
@@ -37,44 +37,18 @@ export class ManageCareerFairComponent implements OnInit {
    */
   getCareerfair(id) {
     this.careerfairService.getCareerfair(id).subscribe(
-      (record) => {
-        this.careerfair = record;
-        this.label = record.term + "  " + record.year
-        console.log("\n\n ++++ ", record, " +++\n");
+      (cFair) => {
+        this.careerfair = cFair;
+        this.label = cFair.term + "  " + cFair.year;
+        console.log("\n\n ++++ ", cFair.companies, " +++\n");
 
-        this.getCompanyById(record.companies);
+        this.active_company_list = (cFair.companies as unknown) as Company[];
+        this.loadInactiveCompanies();
       },
       (error) => {
-        console.log("\n\ngetCareerfair angular error ", error, "--\n");
+        console.log("\n\ngetCareerfair angular error ", id, error, "--\n");
       }
     );
-  }
-
-  /**
-   * get all companies //TODO fetch all at once instad of one at a time????
-   * @param companies - array of company id
-   */
-  getCompanyById(companies) {
-    companies.forEach((element) => {
-      this.companyService.getCompany(element).subscribe(
-        (record) => {
-          var company = record as Company;
-
-          this.active_company_list.push({
-            _id: company._id,
-            name: company.name,
-            domain: company.domain,
-            companyUser: company.companyUser,
-          });
-        },
-        (error) => {
-          console.log("\n\n && retrive company error ", error, " &&\n");
-        }
-      );
-    });
-
-    //load inactive company after all company list is filled (for filterning)
-    this.loadInactiveCompanies();
   }
 
   /**
@@ -110,19 +84,7 @@ export class ManageCareerFairComponent implements OnInit {
       (response) => {
         console.log("\n response on deactive ", response, "-\n");
 
-        var company = response as Company;
-
-        //remove from active list
-        this.active_company_list.splice(
-          this.active_company_list.indexOf(company)
-        );
-
-        this.inactive_company_list.push({
-          _id: company._id,
-          name: company.name,
-          domain: company.domain,
-          companyUser: company.companyUser,
-        });
+        this.getCareerfair(this.id);
       },
       (error) => {
         console.log("\n error on activate ", error, "-\n");
@@ -145,19 +107,7 @@ export class ManageCareerFairComponent implements OnInit {
       (record) => {
         console.log("\n record on activate ", record, "-\n");
 
-        var company = record as Company;
-
-        //remove from inactive list
-        this.inactive_company_list.splice(
-          this.inactive_company_list.indexOf(company)
-        );
-
-        this.active_company_list.push({
-          _id: company._id,
-          name: company.name,
-          domain: company.domain,
-          companyUser: company.companyUser,
-        });
+        this.getCareerfair(this.id);
       },
       (error) => {
         console.log("\n error on activate ", error, "-\n");
