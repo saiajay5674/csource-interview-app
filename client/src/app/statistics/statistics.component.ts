@@ -22,6 +22,8 @@ export class StatisticsComponent implements OnInit {
   id: string;
   careerfair: Careerfair = new Careerfair();
   students: Student[];
+  majors = []
+  classes = []
 
   constructor(
     private route: ActivatedRoute,
@@ -29,13 +31,12 @@ export class StatisticsComponent implements OnInit {
     private studentService: StudentService
   ) {
     this.id = this.route.snapshot.paramMap.get("id");
+    this.getCareerfair(this.id);
+
   }
 
   ngOnInit() {
 
-    this.getCareerfair(this.id);
-
-    this
     this.doughnutChart.push(new Chart('canvas1', {
       type: 'doughnut',
       data: {
@@ -138,6 +139,8 @@ export class StatisticsComponent implements OnInit {
   getCareerfair(id) {
     this.careerfairService.getCareerfair(id).subscribe((record) => {
       this.careerfair = record;
+      let majors = this.careerfair.students.map(student => student.major);
+      console.log(this.careerfair.students);
     });
   }
 
