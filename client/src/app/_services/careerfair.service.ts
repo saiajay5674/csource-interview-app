@@ -56,4 +56,8 @@ export class CareerfairService {
   getCurrent(): Observable<Careerfair> {
     return this.http.get<Careerfair>(`http://localhost:3000/api/careerfair/current`);
   }
+
+  getCurrentInterviews(): Observable<Careerfair> {
+    return this.http.get<Careerfair>(`http://localhost:3000/api/careerfair/interview`);
+  }
 }
