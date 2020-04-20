@@ -22,13 +22,14 @@ export class ManageCareerFairComponent implements OnInit {
   constructor(
     private companyService: CompanyService,
     private route: ActivatedRoute,
-    private careerfairService: CareerfairService
-  ) {
+    private careerfairService: CareerfairService) {
+
     this.id = this.route.snapshot.paramMap.get("id");
+    this.getCareerfair(this.id);
   }
 
   ngOnInit() {
-    this.getCareerfair(this.id);
+    
   }
 
   /**
@@ -39,10 +40,9 @@ export class ManageCareerFairComponent implements OnInit {
     this.careerfairService.getCareerfair(id).subscribe(
       (cFair) => {
         this.careerfair = cFair;
-        this.label = cFair.term + "  " + cFair.year;
-        console.log("\n\n ++++ ", cFair.companies, " +++\n");
+        this.label = this.careerfair.term + "  " + this.careerfair.year;
 
-        this.active_company_list = (cFair.companies as unknown) as Company[];
+        this.active_company_list = this.careerfair.companies;
         this.loadInactiveCompanies();
       },
       (error) => {
@@ -58,9 +58,8 @@ export class ManageCareerFairComponent implements OnInit {
     this.companyService.getCompanies().subscribe(
       (allComapnies) => {
         this.inactive_company_list = allComapnies.filter((comp) => {
-          return (
-            this.active_company_list.map((e) => e.name).indexOf(comp.name) == -1
-          );
+          let a = this.active_company_list.filter(e => e._id === comp._id);
+          return a.length === 0; 
         });
       },
       (error) => {
