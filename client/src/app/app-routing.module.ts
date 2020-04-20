@@ -19,21 +19,20 @@ const routes = [
   {
     path: '',
     component: HomeComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { roles: ['admin']}
   },
   {
     path: 'manageCareerfair',
     component: ManageCareerFairComponent,
-    canActivate: [AuthGuard]
-  },
-  {
-    path: 'careerfair',
-    component: CareerfairComponent
+    canActivate: [AuthGuard],
+    data: { roles: ['admin']}
   },
   {
     path: 'manage-companies',
     component: ManageCompaniesComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { roles: ['admin']}
   },
   {
     path: 'checkin',
@@ -41,7 +40,8 @@ const routes = [
   },
   {
     path: 'company',
-    component: CheckedStudentsComponent
+    component: CheckedStudentsComponent,
+    data: { roles: ['admin', 'company']}
   },
   {
     path: 'login',
@@ -50,7 +50,8 @@ const routes = [
   {
     path: 'statistics',
     component: StatisticsComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    data: { roles: ['admin']}
   }
 ]
 

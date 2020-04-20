@@ -91,9 +91,21 @@ function getCompanyPassword() {
   return generatePassword(12);
 }
 
+function getCompanyByUser() {
+
+  Company.findOne({companyUser: req.params.user}, (error, company) => {
+    if (error) {
+      return res.status(500).json(error);
+    }
+
+    return res.status(200).json(company);
+  });
+}
+
 module.exports = {
   getCompanies,
   addCompany,
   deleteCompany,
   getCompanyById,
+  getCompanyByUser
 };
