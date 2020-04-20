@@ -6,6 +6,7 @@ const edid = require("../edid/edid");
 const crypto = require("crypto");
 
 function getCareerfairs(req, res, next) {
+  console.log(req.headers);
   Careerfair.find((error, careerfairs) => {
     res.json(careerfairs);
   });
