@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CareerfairService } from '../_services/careerfair.service';
 import { Careerfair } from '../_models/Careerfair';
 import { Chart } from 'chart.js';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { ActivatedRoute } from "@angular/router";
-import { StudentService } from '../_services/student.service';
 
 @Component({
   selector: 'app-statistics',
@@ -28,8 +26,7 @@ export class StatisticsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private careerfairService: CareerfairService,
-    private studentService: StudentService
+    private careerfairService: CareerfairService
   ) {
     this.id = this.route.snapshot.paramMap.get("id");
   }
