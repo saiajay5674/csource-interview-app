@@ -15,6 +15,9 @@ router.get('/current/:id', careerfairController.getCurrentInterviews);
 //Get a specific careerfair
 router.get("/:id", careerfairController.getCareerfair);
 
+//Get current career fair interviews
+router.get("/", careerfairController.getCurrentInterviews);
+
 //Create new career fair
 router.post("/", careerfairController.addCareerfair);
 

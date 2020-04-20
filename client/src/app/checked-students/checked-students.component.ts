@@ -4,10 +4,12 @@ import { Careerfair } from '../_models/Careerfair';
 import { CareerfairService } from '../_services/careerfair.service';
 import { Interview } from '../_models/Interview';
 import { ActivatedRoute } from '@angular/router';
+import { Student } from '../_models/Student';
+import { StudentService } from '../_services/student.service';
 
-class Interviewees {
+class Interviewees{
   name: string;
-  time: string;
+  time: Date;
   status: string;
 }
 
@@ -28,8 +30,10 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
   public selectDataItems: Interviewees[] = [];
 
-  careerfair: Careerfair;
   interviews: Interview[];
+  students: Student[];
+  careerfair: Careerfair;
+  interviewees: Interviewees[];
   id;
 
   dataSourceFieldSortMap: any = {};
@@ -37,30 +41,41 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
   constructor(
     private careerfairService: CareerfairService,
+    private studentService: StudentService,
     private route: ActivatedRoute
     ) { this.id = this.route.snapshot.paramMap.get("id"); }
 
   ngOnInit() {
 
-    this.careerfairService.getCurrent().subscribe( (records) => {
+    this.careerfairService.getCurrentInterviews().subscribe( (records) => {
       this.careerfair = records;
     })
     this.getInterviews(this.careerfair);
 
-    const interviewees: Interviewees[] =
-      [{ name: "Jack", time: "08:00", status: "checked in" },
-      { name: "Jessica", time: "09:00", status: "checked in" },
-      { name: "Peter", time: "08:30", status: "checked in" },
-      { name: "Tony", time: "09:10", status: "checked in" },
-      { name: "Tom", time: "09:20", status: "checked in" },
-      { name: "Abc", time: "09:30", status: "checked in" },
-      { name: "Doyouno", time: "09:40", status: "checked in" },
-      { name: "Jason", time: "10:00", status: "checked in" },
-      { name: "Look", time: "10:10", status: "checked in" },
-      { name: "View", time: "10:20", status: "checked in" },
-      { name: "Todo", time: "10:30", status: "checked in" },
-      ];
-    this.dataSource = new MatTableDataSource(interviewees);
+    for (var i = 0; i < this.interviews.length; i++) {
+      if (this.interviews[i].complete) {
+        this.interviewees[i] = {name: this.interviews[i].student, time: this.interviews[i].time, status: "interviewed"};
+      }
+      else {
+        this.interviewees[i] = {name: this.interviews[i].student, time: this.interviews[i].time, status: "checked in"};
+      }
+    }
+
+
+    // const interviewees: Interviewees[] =
+    //   [{ name: "Jack", time: "08:00", status: "checked in" },
+    //   { name: "Jessica", time: "09:00", status: "checked in" },
+    //   { name: "Peter", time: "08:30", status: "checked in" },
+    //   { name: "Tony", time: "09:10", status: "checked in" },
+    //   { name: "Tom", time: "09:20", status: "checked in" },
+    //   { name: "Abc", time: "09:30", status: "checked in" },
+    //   { name: "Doyouno", time: "09:40", status: "checked in" },
+    //   { name: "Jason", time: "10:00", status: "checked in" },
+    //   { name: "Look", time: "10:10", status: "checked in" },
+    //   { name: "View", time: "10:20", status: "checked in" },
+    //   { name: "Todo", time: "10:30", status: "checked in" },
+    //   ];
+    this.dataSource = new MatTableDataSource(this.interviewees);
 
     this.selectDataSource = new MatTableDataSource(this.selectDataItems);
     this.selectDataSource.sort = this.sortBySelect;
@@ -119,10 +134,10 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
   }
 
   getInterviews(careerfair) {
-    var i;
-    for ( i=0; i<careerfair.interviews.length(); i++) {
-      if (careerfair.interviews[i].company == this.id) {
-        this.interviews.push(careerfair.interview[i]);
+    for ( var j=0; j<careerfair.interviews.length; j++) {
+      if (careerfair.interviews[j].company == this.id) {
+        this.interviews.push(careerfair.interviews[j]);
+        // this.students[i] = this.studentService.getStudentFromDB(careerfair.interview[i].student);
       }
     }
   }

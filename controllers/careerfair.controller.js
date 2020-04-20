@@ -361,7 +361,7 @@ function getCurrentInterviews(req, res, next) {
       model: "Interview",
       populate: [
         { path: "company", model: "Company" },
-        { path: "student", model: "Student" },
+        { path: "student", model: "Student" }
       ],
     })
   .exec((error, careerfair) => {

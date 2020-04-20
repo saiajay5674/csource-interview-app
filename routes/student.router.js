@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const edid = require('../edid/edid');
+const Student = require("../models/student");
 
 router.get('/:id', (req, res, next) => {
 
