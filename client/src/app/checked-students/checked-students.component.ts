@@ -7,11 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Student } from '../_models/Student';
 import { StudentService } from '../_services/student.service';
 
-class Interviewees{
-  name: string;
-  time: Date;
-  status: string;
-}
 
 @Component({
   selector: 'app-checked-students',
@@ -22,19 +17,18 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
   public displayedColumns = ['name', 'time', 'status', 'checked'];
 
-  dataSource: MatTableDataSource<Interviewees>;
-  selectDataSource: MatTableDataSource<Interviewees>;
+  dataSource: MatTableDataSource<Interview>;
+  selectDataSource: MatTableDataSource<Interview>;
 
   @ViewChild(MatSort, { static: false }) sortBySelect: MatSort;
   @ViewChild(MatSort, { static: false }) sort: MatSort;
 
-  public selectDataItems: Interviewees[] = [];
+  public selectDataItems: Interview[] = [];
 
-  interviews: Interview[];
+  interviews: Interview[] = [];
   students: Student[];
   careerfair: Careerfair;
-  interviewees: Interviewees[];
-  id;
+  id:string;
 
   dataSourceFieldSortMap: any = {};
   dataSourceSelectFieldSortMap: any = {};
@@ -42,24 +36,27 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
   constructor(
     private careerfairService: CareerfairService,
     private studentService: StudentService,
-    private route: ActivatedRoute
-    ) { this.id = this.route.snapshot.paramMap.get("id"); }
+    private route: ActivatedRoute) { 
+      this.id = this.route.snapshot.paramMap.get("id"); 
+  }
 
   ngOnInit() {
 
-    this.careerfairService.getCurrentInterviews().subscribe( (records) => {
+    this.careerfairService.getCurrentInterviews(this.id).subscribe( (records) => {
       this.careerfair = records;
+      console.log(this.careerfair.interviews.map(elem => elem.student));
+      this.getInterviews(this.careerfair);
     })
-    this.getInterviews(this.careerfair);
+    
 
-    for (var i = 0; i < this.interviews.length; i++) {
-      if (this.interviews[i].complete) {
-        this.interviewees[i] = {name: this.interviews[i].student, time: this.interviews[i].time, status: "interviewed"};
-      }
-      else {
-        this.interviewees[i] = {name: this.interviews[i].student, time: this.interviews[i].time, status: "checked in"};
-      }
-    }
+    // for (var i = 0; i < this.interviews.length; i++) {
+    //   if (this.interviews[i].complete) {
+    //     this.interviewees[i] = {name: this.interviews[i].student, time: this.interviews[i].time, status: "interviewed"};
+    //   }
+    //   else {
+    //     this.interviewees[i] = {name: this.interviews[i].student, time: this.interviews[i].time, status: "checked in"};
+    //   }
+    // }
 
 
     // const interviewees: Interviewees[] =
@@ -75,12 +72,14 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     //   { name: "View", time: "10:20", status: "checked in" },
     //   { name: "Todo", time: "10:30", status: "checked in" },
     //   ];
-    this.dataSource = new MatTableDataSource(this.interviewees);
+
+    this.dataSource = new MatTableDataSource(this.interviews);
 
     this.selectDataSource = new MatTableDataSource(this.selectDataItems);
     this.selectDataSource.sort = this.sortBySelect;
     delete this.dataSourceFieldSortMap.time;
     this.dataSourceSort();
+    
   }
 
   ngAfterViewInit() {
@@ -94,8 +93,8 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
   checkboxLabel(data: any, index: number): void {
 
-    const dataItem: Interviewees[] = this.dataSource.data;
-    const row: Interviewees = dataItem.splice(index, 1)[0];
+    const dataItem: Interview[] = this.dataSource.data;
+    const row: Interview = dataItem.splice(index, 1)[0];
 
     const cloneRow = JSON.parse(JSON.stringify(row));
     cloneRow.status = 'interviewed';
@@ -124,7 +123,7 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
   dataSourceSort(field: string = 'time'): void {
     this.dataSourceFieldSortMap[field] = !this.dataSourceFieldSortMap[field];
-    const dataItem: Interviewees[] = this.dataSource.data;
+    const dataItem: Interview[] = this.dataSource.data;
     if (this.dataSourceFieldSortMap[field]) {
       dataItem.sort((a, b) => a[field].localeCompare(b[field]));
     } else {
@@ -133,13 +132,21 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     this.dataSource = new MatTableDataSource(dataItem);
   }
 
-  getInterviews(careerfair) {
+  getInterviews(careerfair: Careerfair) {
     for ( var j=0; j<careerfair.interviews.length; j++) {
-      if (careerfair.interviews[j].company == this.id) {
+      console.log(careerfair.interviews[j].company._id, careerfair.interviews[j].company.name);
+      //if (careerfair.interviews[j].company._id === this.id) {
         this.interviews.push(careerfair.interviews[j]);
         // this.students[i] = this.studentService.getStudentFromDB(careerfair.interview[i].student);
-      }
+      //}
     }
+    console.log(this.interviews);
+    this.dataSource = new MatTableDataSource(this.interviews);
+
+    this.selectDataSource = new MatTableDataSource(this.selectDataItems);
+    this.selectDataSource.sort = this.sortBySelect;
+    delete this.dataSourceFieldSortMap.time;
+    this.dataSourceSort();
   }
 
 }

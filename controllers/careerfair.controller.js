@@ -6,7 +6,7 @@ const edid = require("../edid/edid");
 const crypto = require("crypto");
 
 function getCareerfairs(req, res, next) {
-  console.log(req.headers);
+
   Careerfair.find((error, careerfairs) => {
     res.json(careerfairs);
   });
@@ -354,7 +354,8 @@ function getCurrentPopulated(req, res, next) {
 
 function getCurrentInterviews(req, res, next) {
 
-  Careerfair.find({current: true})
+  console.log('LOG: GET REQUEST | CAREERFAIR CURRENT | ' + req.params.id);
+  Careerfair.findOne({current: true})
   .populate(
     {
       path: "interviews",
@@ -370,6 +371,7 @@ function getCurrentInterviews(req, res, next) {
       return res.status(500).json(error);
     }
 
+    console.log('LOG: GET REQUEST SUCCESS');
     return res.status(200).json(careerfair);
 
   });

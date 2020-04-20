@@ -2,7 +2,7 @@
 <table mat-table [dataSource]="dataSource" >
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef (click)="dataSourceSort('name')"> Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.student.name}} </td>
   </ng-container>
 
 
@@ -13,7 +13,7 @@
 
   <ng-container matColumnDef="status">
     <th mat-header-cell *matHeaderCellDef > Status </th>
-    <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+    <td mat-cell *matCellDef="let element"> <strong style="color: #FF0000;">Checked-in</strong> </td>
   </ng-container>
 
   <ng-container matColumnDef="checked">
@@ -34,7 +34,7 @@
 <table class="interviewed" mat-table [dataSource]="selectDataSource" >
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef  (click)="sortData('name')" > Name </th>
-    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.student.name}} </td>
   </ng-container>
 
   <ng-container matColumnDef="time">
