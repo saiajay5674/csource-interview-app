@@ -5,7 +5,6 @@ import { Chart } from 'chart.js';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { ActivatedRoute } from "@angular/router";
 import { StudentService } from '../_services/student.service';
-import { Student } from '../_models/Student';
 
 @Component({
   selector: 'app-statistics',
@@ -16,14 +15,16 @@ export class StatisticsComponent implements OnInit {
 
   doughnutChart = [];
   horizontalBarChart = [];
+  doughnutChartLabels = [];
   barChartLabels = [];
   barChartRows = 2;
-  barChartColors = []
+  barChartColors = [];
   id: string;
   careerfair: Careerfair = new Careerfair();
-  students: Student[];
-  majors = []
-  classes = []
+  majors = [];
+  majorsData = [];
+  classes = [];
+  classesData = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -31,25 +32,28 @@ export class StatisticsComponent implements OnInit {
     private studentService: StudentService
   ) {
     this.id = this.route.snapshot.paramMap.get("id");
-    this.getCareerfair(this.id);
-
   }
 
   ngOnInit() {
+    this.getChartContents(this.id);
 
+    setTimeout(() => {
+    this
     this.doughnutChart.push(new Chart('canvas1', {
       type: 'doughnut',
       data: {
-        labels: ['Freshman', 'Sophomore', 'Junior', 'Senior'],
+        labels: this.doughnutChartLabels,
         datasets: [
           {
-            data: [15, 25, 50, 80],
+            data: this.classesData,
             borderColor: '#000000',
             backgroundColor: [
               "#8B1F41", //vt maroon
               "#75787b", //vt hokie stone
               "#E87722", //vt burnt orange
-              "#B6798D"
+              "#B6798D",
+              "#919395",
+              "#F4BB91"
             ],
             fill: true
           }
@@ -73,11 +77,6 @@ export class StatisticsComponent implements OnInit {
       }
     }));
 
-
-    this.barChartLabels.push('Computer Science', 'Computer Engineering', 'Business Information Technology', 'Accounting and Information Systems', 'Statistics',
-      'Computational Modeling and Data Analytics', 'Food Science and Technology', 'Sustainable Biomaterials', 'Engineering Science and Mathematics', 'Environmental Informatics',
-      'Nanoscience', 'Computational and Systems Neuroscience', 'Mechanical Engineering', 'Mathematics', 'Biomedical Engineering');
-
     this.barChartRows = 2 + Math.trunc(this.barChartLabels.length / 7); //change rowspan based on number of labels
 
     var j = Math.ceil(this.barChartLabels.length / 6); //check to see how many times we need to push array of colors to barChartColors
@@ -86,8 +85,7 @@ export class StatisticsComponent implements OnInit {
       j--;
     }
 
-    var i;
-    for ( i = 0; i < this.barChartLabels.length; i++) {  //wrap long label text
+    for ( var i = 0; i < this.barChartLabels.length; i++) {  //wrap long label text
       this.barChartLabels[i] = this.formatLabel(this.barChartLabels[i], 15);
     }
 
@@ -98,7 +96,7 @@ export class StatisticsComponent implements OnInit {
         labels: this.barChartLabels,
         datasets: [
           {
-            data: [50, 30, 20, 25, 10, 35, 27, 9, 16, 28, 4, 7, 19, 31, 14],
+            data: this.majorsData,
             borderColor: '#000000',
             backgroundColor: this.barChartColors,
             fill: true,
@@ -134,13 +132,43 @@ export class StatisticsComponent implements OnInit {
       }
       }
     }));
+  }, 1000);
   }
 
-  getCareerfair(id) {
+  getChartContents(id) {
     this.careerfairService.getCareerfair(id).subscribe((record) => {
       this.careerfair = record;
-      let majors = this.careerfair.students.map(student => student.major);
-      console.log(this.careerfair.students);
+
+      this.classes = this.careerfair.students.map(student => student.class);
+      console.log(this.classes);
+      this.doughnutChartLabels = Array.from(new Set(this.classes));
+      console.log(this.doughnutChartLabels);
+      for (let i = 0; i < this.doughnutChartLabels.length; i++) {
+        let count = 0
+        for (let j = 0; j < this.careerfair.students.length; j++) {
+          if (this.doughnutChartLabels[i] === this.careerfair.students[j].class) {
+            count++;
+          }
+          this.classesData[i] = count;
+        }
+      }
+      console.log(this.classesData);
+
+      this.majors = this.careerfair.students.map(student => student.major);
+      console.log(this.majors);
+      this.barChartLabels = Array.from(new Set(this.majors));
+      console.log(this.barChartLabels);
+      for (let i = 0; i < this.barChartLabels.length; i++) {
+        let count = 0
+        for (let j = 0; j < this.careerfair.students.length; j++) {
+          if (this.barChartLabels[i] === this.careerfair.students[j].major) {
+            count++;
+          }
+          this.majorsData[i] = count;
+        }
+      }
+      console.log(this.majorsData);
+
     });
   }
 
