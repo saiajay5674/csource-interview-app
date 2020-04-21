@@ -1,11 +1,24 @@
 <div class="search-container">
   <div class="search-hero">
     <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
-      placeholder="&#61442;  Search company">
+      placeholder="&#61442;  Search company here">
   </div>
 </div>
 
+
+<div class="container-fluid title">
+  Showing Statistics for {{this.careerfair.term}} {{this.careerfair.year}}:
+</div>
+
 <div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h6 style="text-align: center;">Attending Companies: {{active_company_list.length}}</h6>
+    </div>
+    <div class="col">
+      <h6 style="text-align: center;">Attending Companies: {{inactive_company_list.length}}</h6>
+    </div>
+  </div>
   <div class="row">
       <div class="col">
         <mat-card class="company-container">

@@ -56,3 +56,15 @@ body {
   width: 100%;
   margin: 0;
 }
+
+.title {
+  font-size: 25px;
+  font-style: bold;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #F0EEED;
+  height: 60px;
+  justify-content: center;
+  padding-top: 10px;
+  font-weight: 500;
+}

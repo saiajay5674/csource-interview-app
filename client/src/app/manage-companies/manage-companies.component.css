@@ -29,3 +29,8 @@
 .form-control::placeholder  {
   font-family: FontAwesome;
 }
+
+.title {
+  font-size: 25px;
+  font-style: bold;
+}
