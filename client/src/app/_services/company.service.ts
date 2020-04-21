@@ -1,6 +1,6 @@
 import { Injectable, Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Company } from '../_models/Company'
+import { Company } from '../_models/Company';
 
 //import {AuthService} from './auth.service';
 import {Observable} from "rxjs";
@@ -33,5 +33,9 @@ export class CompanyService {
   //get Company by ID
   getCompany(id){
     return this.http.get(`http://localhost:3000/api/company/${id}`);
+  }
+
+  getCompanyByUser(id): Observable<Company> {
+    return this.http.get<Company>(`http://localhost:3000/api/company/user/${id}`);
   }
 }

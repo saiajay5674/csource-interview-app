@@ -5,7 +5,10 @@ import { CareerfairService } from '../_services/careerfair.service';
 import { Interview } from '../_models/Interview';
 import { ActivatedRoute } from '@angular/router';
 import { Student } from '../_models/Student';
-import { StudentService } from '../_services/student.service';
+import { Company } from '../_models/Company';
+import { CompanyService } from '../_services/company.service';
+import { AuthService } from '../_services/auth.service';
+import { User } from '../_models/User';
 
 
 @Component({
@@ -15,7 +18,7 @@ import { StudentService } from '../_services/student.service';
 })
 export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
-  public displayedColumns = ['name', 'time', 'status', 'checked'];
+  public displayedColumns = ['name', 'time', 'status', 'checked', 'delete'];
 
   dataSource: MatTableDataSource<Interview>;
   selectDataSource: MatTableDataSource<Interview>;
@@ -28,50 +31,33 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
   interviews: Interview[] = [];
   students: Student[];
   careerfair: Careerfair;
+  company: Company;
   id:string;
+  currentUser: User;
 
   dataSourceFieldSortMap: any = {};
   dataSourceSelectFieldSortMap: any = {};
 
   constructor(
     private careerfairService: CareerfairService,
-    private studentService: StudentService,
-    private route: ActivatedRoute) { 
-      this.id = this.route.snapshot.paramMap.get("id"); 
+    private companyService: CompanyService,
+    private authService: AuthService,
+    private route: ActivatedRoute) {
+      this.id = this.route.snapshot.paramMap.get("id");
+      this.authService.currentUser.subscribe(x => this.currentUser = x);
   }
 
   ngOnInit() {
+    this.companyService.getCompanyByUser(this.id).subscribe ( (record) => {
+      this.company = record;
+      console.log(this.company);
+    })
 
     this.careerfairService.getCurrentInterviews(this.id).subscribe( (records) => {
       this.careerfair = records;
       console.log(this.careerfair.interviews.map(elem => elem.student));
       this.getInterviews(this.careerfair);
     })
-    
-
-    // for (var i = 0; i < this.interviews.length; i++) {
-    //   if (this.interviews[i].complete) {
-    //     this.interviewees[i] = {name: this.interviews[i].student, time: this.interviews[i].time, status: "interviewed"};
-    //   }
-    //   else {
-    //     this.interviewees[i] = {name: this.interviews[i].student, time: this.interviews[i].time, status: "checked in"};
-    //   }
-    // }
-
-
-    // const interviewees: Interviewees[] =
-    //   [{ name: "Jack", time: "08:00", status: "checked in" },
-    //   { name: "Jessica", time: "09:00", status: "checked in" },
-    //   { name: "Peter", time: "08:30", status: "checked in" },
-    //   { name: "Tony", time: "09:10", status: "checked in" },
-    //   { name: "Tom", time: "09:20", status: "checked in" },
-    //   { name: "Abc", time: "09:30", status: "checked in" },
-    //   { name: "Doyouno", time: "09:40", status: "checked in" },
-    //   { name: "Jason", time: "10:00", status: "checked in" },
-    //   { name: "Look", time: "10:10", status: "checked in" },
-    //   { name: "View", time: "10:20", status: "checked in" },
-    //   { name: "Todo", time: "10:30", status: "checked in" },
-    //   ];
 
     this.dataSource = new MatTableDataSource(this.interviews);
 
@@ -79,7 +65,7 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     this.selectDataSource.sort = this.sortBySelect;
     delete this.dataSourceFieldSortMap.time;
     this.dataSourceSort();
-    
+
   }
 
   ngAfterViewInit() {
@@ -134,11 +120,9 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
   getInterviews(careerfair: Careerfair) {
     for ( var j=0; j<careerfair.interviews.length; j++) {
-      console.log(careerfair.interviews[j].company._id, careerfair.interviews[j].company.name);
-      //if (careerfair.interviews[j].company._id === this.id) {
-        this.interviews.push(careerfair.interviews[j]);
-        // this.students[i] = this.studentService.getStudentFromDB(careerfair.interview[i].student);
-      //}
+      if (this.careerfair.interviews[j].company._id === this.company._id) {
+        this.interviews.push(this.careerfair.interviews[j]);
+      }
     }
     console.log(this.interviews);
     this.dataSource = new MatTableDataSource(this.interviews);
@@ -147,6 +131,10 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     this.selectDataSource.sort = this.sortBySelect;
     delete this.dataSourceFieldSortMap.time;
     this.dataSourceSort();
+  }
+
+  isAdmin() {
+    return this.currentUser && this.currentUser.role.toLowerCase() === 'admin';
   }
 
 }
