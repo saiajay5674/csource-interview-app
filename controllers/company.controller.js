@@ -92,7 +92,6 @@ function getCompanyPassword() {
 }
 
 function getCompanyByUser(req, res, next) {
-  console.log(req);
 
   Company.findOne({companyUser: req.params.id}, (error, company) => {
     if (error) {
