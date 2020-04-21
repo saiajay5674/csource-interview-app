@@ -91,10 +91,12 @@ function getCompanyPassword() {
   return generatePassword(12);
 }
 
-function getCompanyByUser() {
+function getCompanyByUser(req, res, next) {
+  console.log(req);
 
-  Company.findOne({companyUser: req.params.user}, (error, company) => {
+  Company.findOne({companyUser: req.params.id}, (error, company) => {
     if (error) {
+      console.log(error);
       return res.status(500).json(error);
     }
 

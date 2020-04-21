@@ -57,6 +57,8 @@ export class StatisticsComponent implements OnInit {
                 "#75787b", //vt hokie stone
                 "#E87722", //vt burnt orange
                 "#B6798D",
+                "#919395",
+                "#F4BB91"
               ],
               fill: true,
             },
