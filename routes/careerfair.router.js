@@ -2,9 +2,11 @@ const express = require("express");
 const app = express();
 const router = express.Router();
 const careerfairController = require("../controllers/careerfair.controller");
+const authorize = require('../middleware/authorize');
+const Role = require('../middleware/role');
 
 //Get ALL career fairs
-router.get("/", careerfairController.getCareerfairs);
+router.get("/", authorize([Role.admin]), careerfairController.getCareerfairs);
 
 //Get current careerfair
 router.get("/current", careerfairController.getCurrent);
