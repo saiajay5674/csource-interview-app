@@ -36,6 +36,7 @@ app.use('/api/careerfair', require('./routes/careerfair.router'));
 app.use('/api/company', require('./routes/company.router'));
 app.use('/api/users', require('./routes/user.router'));
 app.use('/api/students', require('./routes/student.router'));
+app.use('/api/interview', require('./routes/interview.router'));
 
 app.listen(PORT, () => {
     console.log('Listening at PORT: ' + PORT);
