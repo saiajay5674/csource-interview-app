@@ -20,6 +20,10 @@ export class AppComponent {
     return this.currentUser && this.currentUser.role.toLowerCase() === 'admin';
   }
 
+  needHeader() {
+    return this.router.url != '/checkin' && this.router.url != '/login'
+  }
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);

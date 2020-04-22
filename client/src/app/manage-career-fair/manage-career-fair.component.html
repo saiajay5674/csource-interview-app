@@ -1,13 +1,45 @@
-<div class="container">
-  <h1 class="label" ng-class>{{label}}</h1>
-
+<div class="search-container">
   <div class="search-hero">
     <input class="form-control" type="text" name="search" [(ngModel)]="searchText"
-      placeholder="&#61442;  Search company">
+      placeholder="&#61442;  Search company here">
   </div>
 </div>
 
-<div class="company-list-container">
+
+<div class="container-fluid title">
+  Showing Statistics for {{this.careerfair.term}} {{this.careerfair.year}}:
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <h6 style="text-align: center;">Attending Companies: {{active_company_list.length}}</h6>
+    </div>
+    <div class="col">
+      <h6 style="text-align: center;">Attending Companies: {{inactive_company_list.length}}</h6>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col">
+        <mat-card class="company-container">
+          <app-manage-company-card [enable]=true (deactivateEvent)="deactivate($event) "
+          *ngFor="let manageCompanyCard of active_company_list | filter:searchText" [company]="manageCompanyCard">
+          </app-manage-company-card>
+        </mat-card>
+      </div>
+      <div class="col">
+          <mat-card class="company-container">
+            <app-manage-company-card (activateEvent)="activate($event)"
+            *ngFor="let manageCompanyCard of inactive_company_list | filter:searchText" [company]="manageCompanyCard">
+            </app-manage-company-card>
+          </mat-card>
+      </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="company-list-container">
 
   <div class="top-company-list-container">
     <div class="company-container">
@@ -31,4 +63,4 @@
     </div>
   </div>
 
-</div>
+</div> -->
