@@ -4,6 +4,8 @@ import { User } from '../_models/User';
 
 import {HttpClient} from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
 
 
 @Injectable({ providedIn: 'root' })
@@ -11,6 +13,7 @@ export class AuthService {
 
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
+  private host: string
 
 
 
@@ -21,6 +24,11 @@ export class AuthService {
     //this is used by app.component.ts
     // currentUser is turned into an Observable that will allow other parts of the app to subscribe and get notified when currentUserSubject changes.
     this.currentUser = this.currentUserSubject.asObservable();
+    this.host = 'http://localhost:3000';
+
+    if (environment.production) {
+      this.host = '';
+    }
 
   }
 
@@ -34,7 +42,7 @@ export class AuthService {
 
     console.log('Reached Auth service')
     // Read more here: https://angular.io/guide/http
-    return this.http.post<any>(`http://localhost:3000/api/users/login`, { username, password })
+    return this.http.post<any>(`${this.host}/api/users/login`, { username, password })
       .pipe(map(user => {
         // login successful if there's a jwt token in the response
         if (user && user.token) {

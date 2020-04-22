@@ -1,5 +1,5 @@
 <app-loader></app-loader>
-<div *ngIf="router.url != '/checkin' && router.url != '/login'">
+<div *ngIf="needHeader()">
   <header>
     <img class="img" src="../assets/vtcs.jpg" alt="pic"
     style="display: inline;"/>
