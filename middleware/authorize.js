@@ -20,7 +20,5 @@ module.exports = function authorize(roles = []) {
             }
             next();
         });
-
-        
     }
 }

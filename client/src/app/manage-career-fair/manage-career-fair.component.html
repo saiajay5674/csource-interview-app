@@ -7,20 +7,20 @@
 
 
 <div class="container-fluid title">
-  Showing Statistics for {{this.careerfair.term}} {{this.careerfair.year}}:
+  {{this.careerfair.term}} {{this.careerfair.year}}
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid border-between">
   <div class="row">
-    <div class="col">
-      <h6 style="text-align: center;">Attending Companies: {{active_company_list.length}}</h6>
+    <div class="col" style="padding-right:20px; border-right: 1px solid #000;">
+      <h6 class="company-header">Attending Companies: {{active_company_list.length}}</h6>
     </div>
     <div class="col">
-      <h6 style="text-align: center;">Attending Companies: {{inactive_company_list.length}}</h6>
+      <h6 class="company-header">Non-Attending Companies: {{inactive_company_list.length}}</h6>
     </div>
   </div>
   <div class="row">
-      <div class="col">
+      <div class="col" style="padding-right:20px; border-right: 1px solid #000;">
         <mat-card class="company-container">
           <app-manage-company-card [enable]=true (deactivateEvent)="deactivate($event) "
           *ngFor="let manageCompanyCard of active_company_list | filter:searchText" [company]="manageCompanyCard">

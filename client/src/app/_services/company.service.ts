@@ -4,14 +4,23 @@ import { Company } from '../_models/Company';
 
 //import {AuthService} from './auth.service';
 import {Observable} from "rxjs";
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class CompanyService {
 
-  constructor(private http: HttpClient) { }
+  private host:string;
+
+  constructor(private http: HttpClient) {
+    this.host = 'http://localhost:3000'
+
+    if (environment.production) {
+      this.host = '';
+    }
+  }
 
   getCompanies() : Observable<Company[]> {
-    return this.http.get<Company[]>('http://localhost:3000/api/company/');
+    return this.http.get<Company[]>(`${this.host}/api/company/`);
   }
 
   addCompany(val): Observable<any> {
@@ -22,20 +31,20 @@ export class CompanyService {
 
     console.log(company);
 
-    return this.http.post<any>('http://localhost:3000/api/company', company);
+    return this.http.post<any>(`${this.host}/api/company`, company);
   }
 
   deleteCompany(company: Company): Observable<any> {
 
-    return this.http.delete<any>(`http://localhost:3000/api/company/${company._id}`);
+    return this.http.delete<any>(`${this.host}/api/company/${company._id}`);
   }
 
   //get Company by ID
   getCompany(id){
-    return this.http.get(`http://localhost:3000/api/company/${id}`);
+    return this.http.get(`${this.host}/api/company/${id}`);
   }
 
   getCompanyByUser(id): Observable<Company> {
-    return this.http.get<Company>(`http://localhost:3000/api/company/user/${id}`);
+    return this.http.get<Company>(`${this.host}/api/company/user/${id}`);
   }
 }

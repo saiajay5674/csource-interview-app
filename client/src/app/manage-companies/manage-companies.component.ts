@@ -28,6 +28,7 @@ export class ManageCompaniesComponent implements OnInit {
   loadCompanies() {
     this.companyService.getCompanies().subscribe((records) => {
       this.companies = records;
+      this.companies.sort(this.sortByName);
     });
   }
 
@@ -50,6 +51,19 @@ export class ManageCompaniesComponent implements OnInit {
         this.loadCompanies();
       })
     })
+  }
+
+  sortByName(item1: Company, item2: Company) {
+
+    if (item1.name < item2.name) {
+      return -1;
+    }
+    else if (item1.name > item2.name) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
   }
 
 }

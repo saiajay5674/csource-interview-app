@@ -12,3 +12,11 @@
   height:100px;
 }
 
+.logo{
+	position: absolute;
+  width:350px;
+  height:100px;
+  top: 0%;
+  right: 1%;
+
+}
