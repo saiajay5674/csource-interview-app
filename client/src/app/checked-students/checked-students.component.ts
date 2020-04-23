@@ -9,6 +9,8 @@ import { Company } from '../_models/Company';
 import { CompanyService } from '../_services/company.service';
 import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/User';
+import { InterviewService } from '../_services/interview.service';
+import { first } from 'rxjs/operators';
 
 
 @Component({
@@ -42,6 +44,7 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     private careerfairService: CareerfairService,
     private companyService: CompanyService,
     private authService: AuthService,
+    private interviewService: InterviewService,
     private route: ActivatedRoute) {
       this.id = this.route.snapshot.paramMap.get("id");
       this.authService.currentUser.subscribe(x => this.currentUser = x);
@@ -81,15 +84,28 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
     const dataItem: Interview[] = this.dataSource.data;
     const row: Interview = dataItem.splice(index, 1)[0];
+    this.interviewService.updateComplete(row._id).pipe(first()).subscribe( (result) => {})
 
     const cloneRow = JSON.parse(JSON.stringify(row));
-    cloneRow.status = 'interviewed';
-
     this.selectDataItems.push(cloneRow);
 
-    this.dataSource = new MatTableDataSource(dataItem);
+    this.dataSource = new MatTableDataSource(this.interviews);
     // move data
     this.selectDataSource = new MatTableDataSource(this.selectDataItems);
+
+    delete this.dataSourceSelectFieldSortMap.time;
+    setTimeout(() => {
+      this.sortData();
+    }, 200);
+  }
+
+  deleteInterview(data: any, index: number): void {
+
+    const dataItem: Interview[] = this.dataSource.data;
+    const row: Interview = dataItem.splice(index, 1)[0];
+    this.interviewService.deleteInterview(row).pipe(first()).subscribe( (result) => {})
+
+    this.dataSource = new MatTableDataSource(this.interviews);
 
     delete this.dataSourceSelectFieldSortMap.time;
     setTimeout(() => {
@@ -121,7 +137,12 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
   getInterviews(careerfair: Careerfair) {
     for ( var j=0; j<careerfair.interviews.length; j++) {
       if (this.careerfair.interviews[j].company._id === this.company._id) {
-        this.interviews.push(this.careerfair.interviews[j]);
+        if (!this.careerfair.interviews[j].complete) {
+          this.interviews.push(this.careerfair.interviews[j]);
+        }
+        else {
+          this.selectDataItems.push(this.careerfair.interviews[j]);
+        }
       }
     }
     console.log(this.interviews);

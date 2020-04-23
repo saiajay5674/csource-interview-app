@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig } from "@angular/material";
 import { CheckinDialogComponent } from '../checkin-dialog/checkin-dialog.component';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { StudentService } from '../_services/student.service' 
+import { StudentService } from '../_services/student.service'
 import { CareerfairService } from '../_services/careerfair.service';
 import { Careerfair } from '../_models/Careerfair';
 import { first } from 'rxjs/operators';
@@ -21,9 +21,9 @@ export class CheckinComponent implements OnInit {
   student: string;
   currentFair: Careerfair
 
-  constructor(public dialog: MatDialog, 
-    private formBuilder: FormBuilder, 
-    private studentService: StudentService, 
+  constructor(public dialog: MatDialog,
+    private formBuilder: FormBuilder,
+    private studentService: StudentService,
     private careerfairService: CareerfairService,
     private notifService: NotificationService,
     private loader: LoaderService) {
@@ -61,7 +61,22 @@ export class CheckinComponent implements OnInit {
     return new Date(`${month} ${day} ${year} ${time}`);
   }
 
-  
+  extractNumber() {
+    var obj = this.passport;
+    var start = obj.indexOf('9');
+    var retVal = true;
+
+    if (start != -1 && obj.length >= 9) {
+        obj = obj.substring(start, start + 9);
+    } else {
+        alert('The value you have entered is invalid.');
+        retVal = false;
+    }
+    this.passport = obj;
+    return retVal;
+  }
+
+
   openDialog(): void {
 
     const dialogConfig = new MatDialogConfig();
