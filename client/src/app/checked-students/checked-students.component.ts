@@ -99,11 +99,24 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     }, 200);
   }
 
-  deleteInterview(data: any, index: number): void {
+  removeInterview(index: number): void {
 
     const dataItem: Interview[] = this.dataSource.data;
     const row: Interview = dataItem.splice(index, 1)[0];
-    this.interviewService.deleteInterview(row).pipe(first()).subscribe( (result) => {})
+
+    let interview = {
+      _id: this.careerfair._id,
+      interviewId: row._id,
+    };
+
+    this.careerfairService.removeInterview(interview).subscribe(
+      (response) => {
+        console.log("\n interview removed ", response, "-\n");
+      },
+      (error) => {
+        console.log("\n error removing ", error, "-\n");
+      }
+    );
 
     this.dataSource = new MatTableDataSource(this.interviews);
 

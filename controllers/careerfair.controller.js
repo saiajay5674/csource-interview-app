@@ -231,6 +231,19 @@ function addInterview(req, res, next) {
   });
 }
 
+function removeInterview(req, res, next) {
+  Careerfair.update(
+  { _id: req.body._id },
+  { $pull: { interviews: req.body.interviewId } }
+  )
+  .then ((result) => {
+    return res.status(200).json(result);
+  })
+  .catch((error) => {
+    return res.status(500).json(error);
+  });
+}
+
 async function saveStudent(pid, careerfairId) {
   return new Promise((resolve, reject) => {
     edid
@@ -401,5 +414,6 @@ module.exports = {
   setCurrent,
   getCurrent,
   getCurrentPopulated,
-  getCurrentInterviews
+  getCurrentInterviews,
+  removeInterview
 };
