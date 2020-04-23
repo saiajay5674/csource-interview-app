@@ -123,7 +123,7 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     delete this.dataSourceSelectFieldSortMap.time;
     setTimeout(() => {
       this.sortData();
-    }, 200);
+    }, 500);
   }
 
   sortData(field: string = 'time'): void {
