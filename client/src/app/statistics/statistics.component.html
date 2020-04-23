@@ -1,4 +1,15 @@
-<mat-toolbar class="title">Showing Statistics for {{this.careerfair.term}} {{this.careerfair.year}}:</mat-toolbar>
+<mat-toolbar class="title">
+  <mat-toolbar-row>
+    <span class="span">
+      Showing Statistics for {{this.careerfair.term}} {{this.careerfair.year}}
+    </span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <span class="span">
+      Total Interviews: {{this.careerfair.interviews.length}}
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
 
 <mat-grid-list cols="6">
   <mat-grid-tile [colspan]="2" [rowspan]="2">
