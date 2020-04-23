@@ -45,6 +45,10 @@ export class CareerfairService {
     return this.http.patch<any>(`http://localhost:3000/api/careerfair/interview/${id}`, data);
   }
 
+  removeInterview(data) {
+    return this.http.patch<any>(`http://localhost:3000/api/careerfair/interview/`, data);
+  }
+
   updateCompanyList(id){
     return this.http.patch<any>(`http://localhost:3000/api/careerfair/company/${id}`, id);
   }

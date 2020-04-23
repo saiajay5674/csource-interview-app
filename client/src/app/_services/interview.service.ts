@@ -9,15 +9,7 @@ export class InterviewService {
   constructor(private http: HttpClient) { }
 
   updateComplete(id) {
-
     return this.http.patch<any>(`http://localhost:3000/api/interview/complete/${id}`, id);
-
-  }
-
-  deleteInterview(interview: Interview): Observable<any> {
-
-    return this.http.delete<any>(`http://localhost:3000/api/interview/${interview._id}`);
-
   }
 
 }

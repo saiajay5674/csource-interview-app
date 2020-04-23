@@ -31,6 +31,8 @@ router.patch("/company/:id", careerfairController.updateCompanyList);
 
 router.patch("/interview/:id", careerfairController.addInterview);
 
+router.patch("/interview/", careerfairController.removeInterview);
+
 //Set a career fair to current careerfair
 router.patch("/current/:id", careerfairController.setCurrent);
 

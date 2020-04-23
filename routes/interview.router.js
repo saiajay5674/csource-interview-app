@@ -17,16 +17,4 @@ router.patch('/complete/:id', (req, res, next) => {
       );
 });
 
-router.delete('/:id', (req, res, next) => {
-
-  Interview.remove({ _id: req.params.id }, (error, result) => {
-    if (error) {
-      console.log("Error");
-      res.json(error);
-    } else {
-      res.json(result);
-    }
-  });
-});
-
 module.exports = router;
