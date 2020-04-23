@@ -12,3 +12,10 @@
   height:100px;
 }
 
+.logo{
+	position:fixed;
+	top:0;
+  right:1%;
+  width:350px;
+  height:100px;
+}
