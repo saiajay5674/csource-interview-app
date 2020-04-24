@@ -1,10 +1,10 @@
 <form [formGroup]="form">
-  <mat-dialog-content class="dialog" >
+  <mat-dialog-content class="dialog">
     <section>
       <h4>Welcome {{this.studentName}}!</h4>
       <br>
     </section>
-  
+
     <section>
       <mat-form-field class="field">
         <mat-label>Company</mat-label>
@@ -16,17 +16,18 @@
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
-  
-      <mat-form-field class="field">
-         <mat-label>Interview time</mat-label>
-         <input matInput type="time" placeholder="Company Name" formControlName="time" required>
-      </mat-form-field>
-    </section>
-</mat-dialog-content>
 
-<mat-dialog-actions>
+      <div class="field">
+        <mat-label>Interview time</mat-label>
+
+        <ngb-timepicker [(ngModel)]="time" [ngModelOptions]="{standalone: true}" [meridian]="true"> </ngb-timepicker>
+      </div>
+    </section>
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
     <br>
     <button mat-raised-button (click)="save()">Save</button>
     <button mat-raised-button (click)="close()">Cancel</button>
-</mat-dialog-actions>
+  </mat-dialog-actions>
 </form>

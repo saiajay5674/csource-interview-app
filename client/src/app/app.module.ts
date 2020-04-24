@@ -40,7 +40,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { JwtInterceptor } from './interceptors/jwt.interceptor'
 import { SendEmailComponent } from './send-email/send-email.component';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -91,7 +91,8 @@ import { SendEmailComponent } from './send-email/send-email.component';
     MatCheckboxModule,
     MatSlideToggleModule,
     MatAutocompleteModule,
-    MatGridListModule
+    MatGridListModule,
+    NgbModule
   ],
   entryComponents: [
     CheckinDialogComponent,
