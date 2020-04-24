@@ -80,7 +80,7 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  checkboxLabel(data: any, index: number): void {
+  checkboxLabel(data: any, index: number): boolean {
 
     const dataItem: Interview[] = this.dataSource.data;
     const row: Interview = dataItem.splice(index, 1)[0];
@@ -97,6 +97,7 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       this.sortData();
     }, 200);
+    return true;
   }
 
   removeInterview(index: number): void {

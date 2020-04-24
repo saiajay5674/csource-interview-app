@@ -19,8 +19,7 @@
   <ng-container matColumnDef="checked">
     <th mat-header-cell *matHeaderCellDef> Interviewed </th>
     <td mat-cell *matCellDef="let element; let i = index">
-      <mat-checkbox (click)="checkboxLabel(element, i)">
-      </mat-checkbox>
+      <mat-checkbox (change)="checkboxLabel(element, i)"></mat-checkbox>
     </td>
   </ng-container>
 
@@ -56,11 +55,8 @@
   </ng-container>
 
   <ng-container matColumnDef="checked">
-    <th mat-header-cell *matHeaderCellDef>  </th>
-    <td mat-cell *matCellDef="let element">
-      <!-- <mat-checkbox>
-      </mat-checkbox> -->
-    </td>
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element"></td>
   </ng-container>
 
   <ng-container matColumnDef="delete">
