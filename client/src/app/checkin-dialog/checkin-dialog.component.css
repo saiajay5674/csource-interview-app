@@ -1,0 +1,19 @@
+.dialog {
+
+    margin: 0 auto;
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+
+.field {
+    width: 80%;
+}
+
+button {
+    width: 45%;
+}
+
+.company-logo {
+    background-size: cover;
+  }

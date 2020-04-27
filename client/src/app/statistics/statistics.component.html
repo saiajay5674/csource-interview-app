@@ -1,0 +1,21 @@
+<mat-toolbar class="title">
+  <mat-toolbar-row>
+    <span class="span">
+      Showing Statistics for {{this.careerfair.term}} {{this.careerfair.year}}
+    </span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <span class="span">
+      Total Interviews: {{this.careerfair.interviews.length}}
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-grid-list cols="6">
+  <mat-grid-tile [colspan]="2" [rowspan]="2">
+    <canvas class="canvas1" id="canvas1"></canvas>
+  </mat-grid-tile>
+  <mat-grid-tile [colspan]="4" [rowspan]="barChartRows">
+    <canvas class="canvas2" id="canvas2"></canvas>
+  </mat-grid-tile>
+</mat-grid-list>

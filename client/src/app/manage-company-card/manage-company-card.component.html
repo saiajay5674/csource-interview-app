@@ -1,0 +1,14 @@
+<mat-card class="company-card row">
+
+  <mat-card-header>
+    <img mat-card-avatar class="company-logo" src="{{'https://logo.clearbit.com/' + company.domain}}"
+      (click)="list_interviewees()">
+    <mat-card-title (click)="list_interviewees()">{{company.name}}</mat-card-title>
+
+    <span class="spacer"></span>
+
+    <mat-slide-toggle [(ngModel)]="enable" (change)="onChange($event)"></mat-slide-toggle>
+
+  </mat-card-header>
+
+</mat-card>

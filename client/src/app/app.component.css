@@ -1,0 +1,22 @@
+.tool {
+  background-color: #8B1F41;
+  color: #FFFFFF;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.img {
+  width:350px;
+  height:100px;
+}
+
+.logo{
+	position: absolute;
+  width:350px;
+  height:100px;
+  top: 0%;
+  right: 1%;
+
+}

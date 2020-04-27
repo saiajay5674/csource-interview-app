@@ -1,0 +1,26 @@
+p {
+  font-family: Lato, serif;
+}
+
+.company-card {
+  max-width: 300px;
+  margin: 10px;
+}
+
+.company-logo {
+  background-size: cover;
+}
+
+.menu {
+  grid-area: menu;
+  justify-self: end;
+  align-self: start;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-card-title {
+  font-size: mat-font-size(02);
+}
