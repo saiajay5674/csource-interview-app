@@ -6,7 +6,7 @@ const authorize = require('../middleware/authorize');
 const Role = require('../middleware/role');
 
 //Get ALL career fairs
-router.get("/", authorize([Role.admin]), careerfairController.getCareerfairs);
+router.get("/", careerfairController.getCareerfairs);
 
 //Get current careerfair
 router.get("/current", careerfairController.getCurrent);
