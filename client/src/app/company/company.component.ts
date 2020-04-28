@@ -16,6 +16,8 @@ import { ManageCompaniesComponent } from '../manage-companies/manage-companies.c
 export class CompanyComponent implements OnInit {
   @Input() company: Company;
 
+  mailTo:string;
+  
   public displaySendEmailState: Boolean = false;
 
   constructor(private companyService: CompanyService,
@@ -25,6 +27,14 @@ export class CompanyComponent implements OnInit {
 
   ngOnInit() {
 
+    this.mailTo = this.getMailTo();
+  }
+
+
+  getMailTo(): string {
+    const { username, password } = this.company.companyUser;
+    const str = `mailto:?&subject=This is your username and password for VT career fair &body=Username%3A%20${username}%20%0D%0APassword%3A%20${password}`;
+    return str;
   }
 
   copyToClip() {

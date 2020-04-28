@@ -25,20 +25,22 @@
   </mat-card-header>
   <div class="code-block row">
 
-    <pre
-      class="col-9">Username: {{this.company.companyUser.username}}<br>Password: {{this.company.companyUser.password}}</pre>
+    <pre class="col-9">Username: {{this.company.companyUser.username}}<br>Password: {{this.company.companyUser.password}}</pre>
     <button mat-menu-item class="copy-button" matTooltip="Copy" (click)="copyToClip()">
       <mat-icon style="font-size: medium; width: fit-content;">assignment</mat-icon>
     </button>
 
   </div>
-  <div class = "position">
-    <button class="email-button" matTooltip="Send email" (click)="displaySendEmail()">
-      <mat-icon>email</mat-icon>
+  <div class="position">
+    <button class="email-button" matTooltip="Send email" >
+
+      <a href='{{mailTo}}'>
+        <mat-icon>email
+       </mat-icon>
+      </a>
+       
     </button>
 
   </div>
-  <div class="send-email" *ngIf="displaySendEmailState">
-    <send-email (onClose)="displaySendEmail()" (onSend)="handlSendEmail($event)" [company]="company" ></send-email>
-  </div>
+
 </mat-card>
