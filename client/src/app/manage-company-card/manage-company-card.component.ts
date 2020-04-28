@@ -23,7 +23,9 @@ export class ManageCompanyCardComponent implements OnInit {
     }
   }
   list_interviewees() {
-    this.router.navigate(["/checked"]);
+    if (this.enable) {
+      this.router.navigate(["/company", {id: this.company.companyUser}]);
+    }
   }
   @Output() activateEvent = new EventEmitter<Company>();
   @Output() deactivateEvent = new EventEmitter<Company>();

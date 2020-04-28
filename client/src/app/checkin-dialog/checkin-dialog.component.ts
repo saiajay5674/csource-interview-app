@@ -61,13 +61,13 @@ export class CheckinDialogComponent implements OnInit {
     //TODO it works, but maybe do time picker without form group
 
     // check time is valid
-    if (this.time.hour && this.time.minute) {
+    // if (this.time.hour && this.time.minute) {
       this.form.controls["time"].setValue(
         this.time.hour + ":" + this.time.minute
       );
 
       this.dialogRef.close(this.form.value);
-    }
+    // }
   }
 
   close() {
