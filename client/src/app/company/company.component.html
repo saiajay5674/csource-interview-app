@@ -1,6 +1,6 @@
 <mat-card class="company-card row">
 
-  <mat-card-header>
+  <mat-card-header class="text-oneline">
     <img mat-card-avatar class="company-logo" src="{{'https://logo.clearbit.com/' + company.domain}}">
     <mat-card-title>{{company.name}}</mat-card-title>
 
@@ -33,8 +33,8 @@
 
   </div>
   <div class = "position">
-    <button class="email-button" matTooltip="Send email" (click)="displaySendEmail()">
-      <mat-icon>email</mat-icon>
+    <button mat-menu-item class="email-button" matTooltip="Send email" (click)="displaySendEmail()">
+      <mat-icon style="font-size: medium; width: fit-content;">email</mat-icon>
     </button>
 
   </div>
