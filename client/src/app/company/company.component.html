@@ -33,12 +33,11 @@
 
   </div>
   <div class = "position">
-    <button mat-menu-item class="email-button" matTooltip="Send email" (click)="displaySendEmail()">
-      <mat-icon style="font-size: medium; width: fit-content;">email</mat-icon>
+    <button mat-menu-item class="email-button" matTooltip="Send email">
+      <a href='{{mailTo}}'>
+        <mat-icon style="font-size: medium; width: fit-content;">email</mat-icon>
+      </a>
     </button>
 
-  </div>
-  <div class="send-email" *ngIf="displaySendEmailState">
-    <send-email (onClose)="displaySendEmail()" (onSend)="handlSendEmail($event)" [company]="company" ></send-email>
   </div>
 </mat-card>
