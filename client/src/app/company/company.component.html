@@ -1,6 +1,6 @@
 <mat-card class="company-card row">
 
-  <mat-card-header class="text-oneline">
+  <mat-card-header>
     <img mat-card-avatar class="company-logo" src="{{'https://logo.clearbit.com/' + company.domain}}">
     <mat-card-title>{{company.name}}</mat-card-title>
 
@@ -25,19 +25,22 @@
   </mat-card-header>
   <div class="code-block row">
 
-    <pre
-      class="col-9">Username: {{this.company.companyUser.username}}<br>Password: {{this.company.companyUser.password}}</pre>
+    <pre class="col-9">Username: {{this.company.companyUser.username}}<br>Password: {{this.company.companyUser.password}}</pre>
     <button mat-menu-item class="copy-button" matTooltip="Copy" (click)="copyToClip()">
       <mat-icon style="font-size: medium; width: fit-content;">assignment</mat-icon>
     </button>
 
   </div>
-  <div class = "position">
-    <button mat-menu-item class="email-button" matTooltip="Send email">
+  <div class="position">
+    <button class="email-button" matTooltip="Send email" >
+
       <a href='{{mailTo}}'>
-        <mat-icon style="font-size: medium; width: fit-content;">email</mat-icon>
+        <mat-icon>email
+       </mat-icon>
       </a>
+       
     </button>
 
   </div>
+
 </mat-card>

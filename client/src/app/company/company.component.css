@@ -65,12 +65,6 @@ pre {
 
 .position {
   position: absolute;
-  left: 76.5%;
-  top: 60%;
-}
-
-.text-oneline ::ng-deep * {
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
+  left: 78%;
+  top: 70%;
 }

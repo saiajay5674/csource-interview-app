@@ -16,8 +16,8 @@ import { ManageCompaniesComponent } from '../manage-companies/manage-companies.c
 export class CompanyComponent implements OnInit {
   @Input() company: Company;
 
-  mailTo: string;
-
+  mailTo:string;
+  
   public displaySendEmailState: Boolean = false;
 
   constructor(private companyService: CompanyService,
@@ -26,8 +26,10 @@ export class CompanyComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.mailTo = this.getMailTo();
   }
+
 
   getMailTo(): string {
     const { username, password } = this.company.companyUser;
