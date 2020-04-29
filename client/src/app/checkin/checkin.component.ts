@@ -51,7 +51,7 @@ export class CheckinComponent implements OnInit {
     });
   }
 
-  getStudent() {
+  getStudent(): boolean {
     this.studentService.getStudent(this.passport).subscribe(
       (result) => {
         this.student = result.name;
@@ -64,6 +64,7 @@ export class CheckinComponent implements OnInit {
         console.log(error);
       }
     );
+    return true;
   }
 
   getDateObj(time) {
@@ -91,7 +92,7 @@ export class CheckinComponent implements OnInit {
     return new Date(`${month} ${day} ${year} ${time}`);
   }
 
-  extractNumber() {
+  extractNumber(): boolean {
     var obj = this.passport;
     var start = obj.indexOf("9");
     var retVal = true;
