@@ -1,39 +1,33 @@
 <div class="back">
   <form class="form-horizontal" [formGroup]="form">
-<mat-card class="example-card" layout="row" layout-align="center">
-  <div style="text-align:center">
-  <mat-card-header>
-        <div layout="row" style="justify-content: center;">
-        <img src="../../assets/vtcs.jpg" alt="pic"
-        style="width:95%;height: 80%;"/>
-      </div>
-        <!-- <mat-card-title>Check In for a Interview</mat-card-title> -->
+    <mat-card class="example-card" layout="row" layout-align="center">
+      <div style="text-align:center">
+        <mat-card-header>
+          <div layout="row" style="justify-content: center;">
+            <img src="../../assets/vtcs.jpg" alt="pic" style="width:95%;height: 80%;" />
+          </div>
+          <!-- <mat-card-title>Check In for a Interview</mat-card-title> -->
 
-      </mat-card-header>
+        </mat-card-header>
 
-      <mat-card-content>
+        <mat-card-content>
           <mat-form-field appearance="standard">
             <mat-label>Enter Your Hokie ID Here</mat-label>
-            <input matInput class="form-control" type="password" [(ngModel)]='passport' placeholder="" formControlName="passport" required>
+            <input matInput class="form-control" autofocus="autofocus" type="password" [(ngModel)]='passport'
+              placeholder="" formControlName="passport" required
+              [ngClass]="{ 'is-invalid':  showError || form.get('passport').invalid && form.get('passport').dirty }">
           </mat-form-field>
-      </mat-card-content>
+        </mat-card-content>
 
+        <div class="error" *ngIf="showError || form.get('passport').invalid && form.get('passport').dirty">
+          Please Enter valid Hokie Passport ID
+        </div>
 
-      <mat-card-actions>
-        <button mat-button class="btn btn-outline-success" (click)="extractNumber() && getStudent() && form.valid">Check In Now!</button>
-      </mat-card-actions>
-  </div>
-  </mat-card>
-</form>
-
+        <mat-card-actions>
+          <button mat-button class="btn btn-success bg-success text-white"
+            (click)="extractNumber() && getStudent() && form.valid">Check In Now!</button>
+        </mat-card-actions>
+      </div>
+    </mat-card>
+  </form>
 </div>
-
-
-
-
-
-
-
-
-
-

@@ -1,23 +1,23 @@
 /* Button */
 .open-button {
-    background-color: #555;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    opacity: 0.8;
-    position: fixed;
-    top: 500px;
-    right: 800px;
-    width: 280px;
-  }
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  top: 500px;
+  right: 800px;
+  width: 280px;
+}
 
-  .example-card{
-    margin: 0 auto;
-    width: 40%;
-    height: 50%;
-    top: 200px;
-    padding: 16px 20px;
+.example-card {
+  margin: 0 auto;
+  width: 40%;
+  height: 50%;
+  top: 200px;
+  padding: 16px 20px;
 }
 
 .center {
@@ -28,9 +28,12 @@
 }
 
 .back {
-  background-color: #8B1F41;
+  background-color: #8b1f41;
 }
 
+.error {
+  color: red;
+  font-size: 14px;
 
-
-
+  margin-bottom: 5px;
+}
