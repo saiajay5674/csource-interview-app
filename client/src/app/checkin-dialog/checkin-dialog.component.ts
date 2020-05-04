@@ -59,7 +59,8 @@ export class CheckinDialogComponent implements OnInit {
 
   save() {
     // check time is valid
-    if (this.time) {
+    if (this.time.hour != null && this.time.minute != null) {
+      console.log("\n\ntime  ---- ", this.time);
       this.form.controls["time"].setValue(
         this.time.hour + ":" + this.time.minute
       );
