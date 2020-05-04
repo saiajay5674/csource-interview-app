@@ -94,21 +94,24 @@ export class CheckinComponent implements OnInit {
 
   extractNumber(): boolean {
     var obj = this.passport;
-    var start = obj.indexOf("9");
-    var retVal = true;
+    if (obj) {
+      var start = obj.indexOf("9");
 
-    if (start != -1 && obj.length >= 9) {
-      obj = obj.substring(start, start + 9);
-    } else {
-      this.showError = true;
+      var retVal = true;
 
-      alert("The value you have entered is invalid.");
+      if (start != -1 && obj.length >= 9) {
+        obj = obj.substring(start, start + 9);
+      } else {
+        this.showError = true;
 
-      retVal = false;
+        alert("The value you have entered is invalid.");
+
+        retVal = false;
+      }
+      this.showError = false;
+      this.passport = obj;
+      return retVal;
     }
-    this.showError = false;
-    this.passport = obj;
-    return retVal;
   }
 
   openDialog() {
@@ -117,7 +120,7 @@ export class CheckinComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.disableClose = true;
     dialogConfig.width = "30%";
-    dialogConfig.height = "60%";
+    dialogConfig.height = "40%";
 
     dialogConfig.data = {
       name: this.student,
