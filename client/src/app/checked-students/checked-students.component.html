@@ -1,3 +1,11 @@
+<mat-toolbar class="title">
+  <mat-toolbar-row>
+    <span class="span">
+      {{company.name}}'s Interviews
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
 <h3 class="interviewedTips">Checked-in Students</h3>
 <table mat-table [dataSource]="dataSource" >
   <ng-container matColumnDef="name">

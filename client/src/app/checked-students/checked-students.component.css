@@ -33,3 +33,12 @@ td.mat-cell {
   /* background-color: red; */
   border-top: 1px solid #ccc;
 }
+
+.title {
+  font-size: 30px;
+  font-style: bold;
+}
+
+.span {
+  margin: auto;
+}

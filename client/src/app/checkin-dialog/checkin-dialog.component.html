@@ -22,7 +22,9 @@
       <div class="error" *ngIf="form.get('company').invalid">
         Please choose a company
       </div>
+    </section>
 
+    <section>
       <mat-label>Interview time:</mat-label>
       <div class="field">
         <ngb-timepicker [(ngModel)]="time" [ngModelOptions]="{standalone: true}" [meridian]="true"> </ngb-timepicker>
