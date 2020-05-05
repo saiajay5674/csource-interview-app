@@ -19,7 +19,7 @@ export class ManageCompanyCardComponent implements OnInit {
   ngOnInit() {
     //trim long company names
     if (this.company.name.length > 6) {
-      this.company.name = this.company.name.substring(0, 5) + "...";
+      this.company.name = this.company.name.substring(0, 4) + "...";
     }
   }
   list_interviewees() {
