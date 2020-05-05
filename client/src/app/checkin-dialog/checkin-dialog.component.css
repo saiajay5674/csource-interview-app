@@ -17,3 +17,10 @@ button {
 .company-logo {
   background-size: cover;
 }
+
+.error {
+  color: red;
+  font-size: 14px;
+
+  margin-bottom: 5px;
+}

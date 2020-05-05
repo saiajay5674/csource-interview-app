@@ -11,10 +11,6 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>edit</mat-icon>
-          <span>Edit</span>
-        </button>
         <button mat-menu-item (click)="delete()">
           <mat-icon>delete</mat-icon>
           <span>Delete</span>
@@ -25,18 +21,19 @@
   </mat-card-header>
   <div class="code-block row">
 
-    <pre class="col-9">Username: {{this.company.companyUser.username}}<br>Password: {{this.company.companyUser.password}}</pre>
+    <pre
+      class="col-9">Username: {{this.company.companyUser.username}}<br>Password: {{this.company.companyUser.password}}</pre>
     <button mat-menu-item class="copy-button" matTooltip="Copy" (click)="copyToClip()">
       <mat-icon style="font-size: medium; width: fit-content;">assignment</mat-icon>
     </button>
 
   </div>
   <div class="position">
-    <button mat-menu-item class="email-button" matTooltip="Send email" >
+    <button mat-menu-item class="email-button" matTooltip="Send email">
 
       <a href='{{mailTo}}'>
         <mat-icon style="font-size: medium; width: fit-content;">email
-       </mat-icon>
+        </mat-icon>
       </a>
 
     </button>
