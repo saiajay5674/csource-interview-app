@@ -3,4 +3,5 @@ export class User {
   role: string;
   password:string;
   token?: string;
+  _id: string;
 }
