@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../_services/auth.service';
-import { User } from '../../../../models/User';
+import { User } from '../_models/User';
 import { Router } from "@angular/router";
 import { ObjectUnsubscribedError } from 'rxjs';
 
