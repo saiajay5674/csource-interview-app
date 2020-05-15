@@ -11,6 +11,8 @@ import { AuthService } from '../_services/auth.service';
 import { User } from '../_models/User';
 import { InterviewService } from '../_services/interview.service';
 import { first } from 'rxjs/operators';
+import { Observable, interval, Subscription } from "rxjs";
+
 
 
 @Component({
@@ -39,6 +41,8 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
 
   dataSourceFieldSortMap: any = {};
   dataSourceSelectFieldSortMap: any = {};
+  
+  private updateSubscription: Subscription;
 
   constructor(
     private careerfairService: CareerfairService,
@@ -68,6 +72,11 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     this.selectDataSource.sort = this.sortBySelect;
     delete this.dataSourceFieldSortMap.time;
     this.dataSourceSort();
+
+    this.updateSubscription = interval(30000).subscribe((val) => {
+      location.reload();
+      //this.updateStats();
+    });
 
   }
 
