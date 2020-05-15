@@ -43,6 +43,7 @@ export class ManageCareerFairComponent implements OnInit {
         this.label = this.careerfair.term + "  " + this.careerfair.year;
 
         this.active_company_list = this.careerfair.companies;
+        this.active_company_list.sort(this.sortByName);
         this.loadInactiveCompanies();
       },
       (error) => {
@@ -61,6 +62,7 @@ export class ManageCareerFairComponent implements OnInit {
           let a = this.active_company_list.filter(e => e._id === comp._id);
           return a.length === 0; 
         });
+        this.inactive_company_list.sort(this.sortByName);
       },
       (error) => {
         console.log("LoadInactiveCompanies Error angular ", error);
@@ -112,5 +114,18 @@ export class ManageCareerFairComponent implements OnInit {
         console.log("\n error on activate ", error, "-\n");
       }
     );
+  }
+
+  sortByName(item1: Company, item2: Company) {
+
+    if (item1.name < item2.name) {
+      return -1;
+    }
+    else if (item1.name > item2.name) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
   }
 }

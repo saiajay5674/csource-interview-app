@@ -31,6 +31,7 @@ export class CheckinDialogComponent implements OnInit {
   ) {
     this.studentName = name;
     this.companies = companies;
+    this.companies.sort(this.sortByName);
 
     this.form = this.fb.group({
       company: [company, Validators.required],
@@ -79,5 +80,18 @@ export class CheckinDialogComponent implements OnInit {
 
   getOptionText(option) {
     return option.name;
+  }
+
+  sortByName(item1: Company, item2: Company) {
+
+    if (item1.name < item2.name) {
+      return -1;
+    }
+    else if (item1.name > item2.name) {
+      return 1;
+    }
+    else {
+      return 0;
+    }
   }
 }
