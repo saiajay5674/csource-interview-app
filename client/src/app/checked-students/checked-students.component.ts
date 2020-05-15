@@ -73,7 +73,7 @@ export class CheckedStudentsComponent implements OnInit, AfterViewInit {
     delete this.dataSourceFieldSortMap.time;
     this.dataSourceSort();
 
-    this.updateSubscription = interval(30000).subscribe((val) => {
+    this.updateSubscription = interval(60000).subscribe((val) => {
       location.reload();
       //this.updateStats();
     });
