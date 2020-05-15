@@ -1,0 +1,15 @@
+<div class="modal-header">
+  <h4 class="modal-title">Are you sure you want to delete {{compnay.charAt(0).toUpperCase() + compnay.slice(1)}} ? </h4>
+  <button type="button" class="close" aria-label="Close" (click)="cancel()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  All the data associated with this company will be deleted
+</div>
+
+<div>
+  <button style="width: 50%;" color="success" mat-raised-button (click)="cancel()">Cancel</button>
+  <button style="width: 50%;" mat-raised-button color="warn" (click)="accept()">Yes</button>
+</div>
